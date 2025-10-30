@@ -383,6 +383,62 @@
             margin-left: 3px;
         }
 
+        /* Video Modal Styles */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        .video-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            animation: slideIn 0.3s;
+        }
+
+        .video-modal video {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .video-modal-close:hover {
+            color: var(--gold);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
         footer {
             background: #000;
             color: white;
@@ -677,10 +733,7 @@
                 </div>
                 <div class="video-testimonial">
                     <h4>Video Testimonial</h4>
-                    <video controls style="width: 100%; max-width: 500px; border-radius: 8px;">
-                        <source src="https://res.cloudinary.com/dxhfgtzte/video/upload/v1761804502/WhatsApp_Video_2025-10-26_at_1.13.48_PM_xaldy8.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="video-play" id="testimonialVideoBtn"></div>
                 </div>
             </div>
         </div>
@@ -749,5 +802,55 @@
             <p>For events or sponsorship inquiries contact: <a href="mailto:events@gingerandco.at" style="color: var(--gold);">events@gingerandco.at</a></p>
         </div>
     </footer>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <span class="video-modal-close" id="closeModal">&times;</span>
+            <video id="modalVideo" controls>
+                <source src="https://res.cloudinary.com/dxhfgtzte/video/upload/v1761804502/WhatsApp_Video_2025-10-26_at_1.13.48_PM_xaldy8.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        // Video Modal functionality
+        const testimonialBtn = document.getElementById('testimonialVideoBtn');
+        const videoModal = document.getElementById('videoModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalVideo = document.getElementById('modalVideo');
+
+        // Open modal when play button is clicked
+        testimonialBtn.addEventListener('click', function() {
+            videoModal.classList.add('active');
+            modalVideo.play();
+        });
+
+        // Close modal when X is clicked
+        closeModal.addEventListener('click', function() {
+            videoModal.classList.remove('active');
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+        });
+
+        // Close modal when clicking outside the video
+        videoModal.addEventListener('click', function(e) {
+            if (e.target === videoModal) {
+                videoModal.classList.remove('active');
+                modalVideo.pause();
+                modalVideo.currentTime = 0;
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                videoModal.classList.remove('active');
+                modalVideo.pause();
+                modalVideo.currentTime = 0;
+            }
+        });
+    </script>
 </body>
 </html>
