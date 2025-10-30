@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ginger & Co. - Afrobeats Fitness and Lifestyle</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --dark: #1a1a1a;
+            --light-gray: #f5f5f5;
+            --medium-gray: #666;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'League Spartan', sans-serif;
+            font-weight: 500 !important;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-box {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        .btn-primary {
+            background: var(--dark);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary:hover {
+            background: #000;
+        }
+
+        .hero {
+            position: relative;
+            height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://res.cloudinary.com/dxhfgtzte/image/upload/v1761733789/Events_Page_image_1_aq9xzu.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 500 !important;
+        }
+
+        .hero-content h1 .highlight {
+            color: var(--gold);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .about {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .about-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500 !important;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+            color: var(--medium-gray);
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            font-family: 'League Spartan', sans-serif;
+        }
+
+        .event {
+            padding: 5rem 5%;
+            background: var(--light-gray);
+        }
+
+        .event-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .event h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 500 !important;
+            text-transform: uppercase;
+        }
+
+        .event-video {
+            background: var(--dark);
+            border-radius: 8px;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+
+        .play-button::after {
+            content: '▶';
+            font-size: 2rem;
+            margin-left: 5px;
+        }
+
+        .event-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 500 !important;
+        }
+
+        .event-details {
+            margin: 2rem 0;
+        }
+
+        .event-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .event-detail-icon {
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            border-radius: 50%;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .event-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--dark);
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid var(--dark);
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .btn-outline:hover {
+            background: var(--dark);
+            color: white;
+        }
+
+        .community {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .community-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .community h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 500 !important;
+            text-transform: uppercase;
+        }
+
+        .community-intro {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: var(--medium-gray);
+        }
+
+        .testimonials-header {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid var(--gold);
+            text-align: center;
+        }
+
+        .testimonial h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 500 !important;
+        }
+
+        .stars {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            color: var(--medium-gray);
+            font-size: 0.95rem;
+        }
+
+        .video-testimonial {
+            background: var(--light-gray);
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-testimonial h4 {
+            margin-bottom: 1.5rem;
+            font-weight: 500 !important;
+        }
+
+        .video-play {
+            width: 60px;
+            height: 60px;
+            background: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .video-play:hover {
+            transform: scale(1.1);
+        }
+
+        .video-play::after {
+            content: '▶';
+            color: white;
+            font-size: 1.5rem;
+            margin-left: 3px;
+        }
+
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 5% 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .footer-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .footer-company-name {
+            font-size: 128px !important;
+            font-weight: 600 !important;
+            line-height: 1.1 !important;
+            font-family: 'League Spartan', sans-serif !important;
+        }
+
+        .footer-contact {
+            margin-top: 1rem;
+        }
+
+        .contact-item {
+            background: white;
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-hashtag {
+            background: var(--gold);
+            color: var(--dark);
+            padding: 0.6rem 1.5rem;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 700;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 500 !important;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .social-link:hover {
+            color: var(--gold);
+        }
+
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        @media (max-width: 1200px) {
+            .footer-company-name {
+                font-size: 96px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: flex;
+            }
+
+            .logo-container {
+                flex-wrap: wrap;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .about-container,
+            .event-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .testimonials {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-company-name {
+                font-size: 64px !important;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            header {
+                padding: 1rem 4%;
+            }
+
+            .hero,
+            .about,
+            .event,
+            .community,
+            footer {
+                padding-left: 4%;
+                padding-right: 4%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-company-name {
+                font-size: 48px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.html" style="text-decoration: none;">
+                <div class="logo-box">
+                    <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/f_auto,q_auto/Ginger_logo_1_l0s1ql" alt="Ginger & Co. Logo">
+                </div>
+            </a>
+            <nav>
+                <a href="events.html">Events</a>
+            </nav>
+        </div>
+        <a href="#tickets" class="btn-primary">Get Tickets</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1><span class="highlight">Afrobeats</span> Fitness and<br>Lifestyle <span class="highlight">-</span>Vienna</h1>
+            <p>Premium boutique cycling experiences inspired by Afrobeats Culture</p>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/f_auto,q_auto/About_us_Image_dtg8ax" alt="Cycling Studio">
+            </div>
+            <div class="about-content">
+                <h2>ABOUT GINGER & CO. BOUTIQUE FITNESS</h2>
+                <p>Ginger & Co cycling experiences brings fitness experiences with cultural energy of Afrobeats. We design inclusive classes led by expert instructors. This is a space where movement meets music and community.</p>
+                <p><strong>GINGER & CO. STUDIO — <span class="status-badge">COMING SOON</span></strong></p>
+                <p>Our flagship Afro-modern boutique fitness & wellness studio in Vienna — anchored by a 100-bike cycling arena, with Pilates, functional training, and family-friendly wellness spaces.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="event">
+        <div class="event-container">
+            <div>
+                <h2>AFROBEATS INDOOR CYCLING: VIENNA TAKEOVER 2025</h2>
+                <div class="event-video">
+                    <div class="play-button"></div>
+                </div>
+            </div>
+            <div class="event-info">
+                <h3>Austria's Largest Indoor Group-Fitness Cycling Experience to Date</h3>
+                <p>An immersive pop-up indoor cycling event – music, movement, and magic. Afrobeats Indoor Cycling: Vienna Takeover 2025 is a first-of-its-kind indoor fitness concert merging rhythm, culture, and performance.</p>
+                <div class="event-details">
+                    <div class="event-detail">
+                        <div class="event-detail-icon"></div>
+                        <div><strong>Date:</strong> Saturday, 06 December 2025</div>
+                    </div>
+                    <div class="event-detail">
+                        <div class="event-detail-icon"></div>
+                        <div><strong>Venue:</strong> Main ball hall, Sport Arena Vienna, Stephane-Endres-Straße 3, 1020 Vienna</div>
+                    </div>
+                    <div class="event-detail">
+                        <div class="event-detail-icon"></div>
+                        <div><strong>Time:</strong> 13:00 - 21:00</div>
+                    </div>
+                </div>
+                <div class="event-actions">
+                    <a href="events.html" class="btn-outline">Event Page</a>
+                    <a href="#tickets" class="btn-primary">Get Tickets</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="community">
+        <div class="community-container">
+            <h2>COMMUNITY</h2>
+            <p class="community-intro">We celebrate exclusivity and cultural expression. Come experience a community that move together and lift each other.</p>
+            <div class="testimonials-header">TESTIMONIALS</div>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <h4>James Pattinson</h4>
+                    <div class="stars">★★★★★</div>
+                    <p>"Best class I've ever taken, the music and energy are unmatched!"</p>
+                </div>
+                <div class="testimonial">
+                    <h4>Mathew Jacobs</h4>
+                    <div class="stars">★★★★★</div>
+                    <p>"Premium experience, welcoming instructors and community!"</p>
+                </div>
+                <div class="video-testimonial">
+                    <h4>Video Testimonial</h4>
+                    <div class="video-play"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div>
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/f_auto,q_auto/Ginger_logo_1_l0s1ql" alt="Ginger & Co. Logo">
+                    </div>
+                    <h3 class="footer-company-name">Ginger &<br>Co.</h3>
+                </div>
+                <div class="footer-contact">
+                    <div class="contact-item">info@gingerandco.at</div>
+                    <div class="footer-hashtag">#NOPAINOGINGER</div>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="#studio">Studio</a></li>
+                    <li><a href="#community">Community</a></li>
+                    <li><a href="#tickets">Tickets</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="mailto:info@gingerandco.at" class="social-link">
+                        <svg class="social-icon" viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        EMAIL
+                    </a>
+                    <a href="https://www.instagram.com/gingerandco.official/?igsh=MWRuMWRyc2NpNHQ4bg%3D%3D#" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <svg class="social-icon" viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        INSTAGRAM
+                    </a>
+                    <a href="https://www.tiktok.com/@gingerandco.official" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                        </svg>
+                        TIKTOK
+                    </a>
+                    <a href="https://www.linkedin.com/company/ginger-co/" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <svg class="social-icon" viewBox="0 0 24 24">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                        LINKEDIN
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 All rights reserved to Ginger & Co</p>
+            <p>For events or sponsorship inquiries contact: <a href="mailto:events@gingerandco.at" style="color: var(--gold);">events@gingerandco.at</a></p>
+        </div>
+    </footer>
+</body>
+</html>
