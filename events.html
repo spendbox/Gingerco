@@ -302,12 +302,17 @@
             max-width: 800px;
             margin: 0 auto;
             aspect-ratio: 16/9;
-            background: var(--light-gray);
+            background: var(--dark);
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow: hidden;
             position: relative;
+        }
+
+        .video-section video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
         }
 
         .play-button {
@@ -723,7 +728,7 @@
                 </div>
             </div>
             <div class="video-section">
-                <video controls style="width: 100%; height: 100%; border-radius: 8px;">
+                <video controls preload="metadata">
                     <source src="https://res.cloudinary.com/dxhfgtzte/video/upload/v1761814536/Video_3_tojf2k.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
