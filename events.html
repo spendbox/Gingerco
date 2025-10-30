@@ -13,6 +13,11 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
         :root {
             --gold: #D4AF37;
             --dark: #1a1a1a;
@@ -306,6 +311,11 @@
             border-radius: 8px;
             overflow: hidden;
             position: relative;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .video-section video {
@@ -318,17 +328,20 @@
         .play-button {
             width: 80px;
             height: 80px;
-            background: var(--dark);
+            background: rgba(26, 26, 26, 0.9);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            position: absolute;
+            z-index: 2;
         }
 
         .play-button:hover {
             transform: scale(1.1);
+            background: var(--gold);
         }
 
         .play-button::after {
@@ -336,6 +349,50 @@
             color: white;
             font-size: 2rem;
             margin-left: 5px;
+        }
+
+        /* Video Modal Styles */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .video-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+        }
+
+        .video-modal video {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .video-modal-close:hover {
+            color: var(--gold);
         }
 
         .benefits {
@@ -727,11 +784,8 @@
                     <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/f_auto,q_auto/Events_Page_image_1_aq9xzu" alt="Event Gallery 3">
                 </div>
             </div>
-            <div class="video-section">
-                <video controls preload="metadata">
-                    <source src="https://res.cloudinary.com/dxhfgtzte/video/upload/v1761814536/Video_3_tojf2k.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <div class="video-section" id="eventVideoBtn">
+                <div class="play-button"></div>
             </div>
         </div>
     </section>
@@ -840,5 +894,56 @@
             <p>For events or sponsorship inquiries contact: <a href="mailto:events@gingerandco.at" style="color: var(--gold);">events@gingerandco.at</a></p>
         </div>
     </footer>
+
+    <!-- Video Modal -->
+    <div id="eventVideoModal" class="video-modal">
+        <div class="video-modal-content">
+            <span class="video-modal-close" id="closeEventModal">&times;</span>
+            <video id="eventModalVideo" controls>
+                <source src="https://res.cloudinary.com/dxhfgtzte/video/upload/v1761814536/Video_3_tojf2k.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        // Video Modal functionality for events page
+        const eventVideoBtn = document.getElementById('eventVideoBtn');
+        const eventVideoModal = document.getElementById('eventVideoModal');
+        const closeEventModal = document.getElementById('closeEventModal');
+        const eventModalVideo = document.getElementById('eventModalVideo');
+
+        // Open modal when video section is clicked
+        eventVideoBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            eventVideoModal.classList.add('active');
+            eventModalVideo.play();
+        });
+
+        // Close modal when X is clicked
+        closeEventModal.addEventListener('click', function() {
+            eventVideoModal.classList.remove('active');
+            eventModalVideo.pause();
+            eventModalVideo.currentTime = 0;
+        });
+
+        // Close modal when clicking outside the video
+        eventVideoModal.addEventListener('click', function(e) {
+            if (e.target === eventVideoModal) {
+                eventVideoModal.classList.remove('active');
+                eventModalVideo.pause();
+                eventModalVideo.currentTime = 0;
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && eventVideoModal.classList.contains('active')) {
+                eventVideoModal.classList.remove('active');
+                eventModalVideo.pause();
+                eventModalVideo.currentTime = 0;
+            }
+        });
+    </script>
 </body>
 </html>

@@ -14,6 +14,11 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
         :root {
             --gold: #D4AF37;
             --dark: #1a1a1a;
@@ -135,9 +140,11 @@
         }
 
         .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
             font-weight: 500 !important;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
         }
 
         .hero-content h1 .highlight {
@@ -145,8 +152,9 @@
         }
 
         .hero-content p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 2rem;
+            line-height: 1.4;
         }
 
         .about {
@@ -706,7 +714,7 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1><span class="highlight">Afrobeats</span> Fitness and<br>Lifestyle <span class="highlight">-</span>Vienna</h1>
+            <h1><span class="highlight">Afrobeats</span> Fitness and<br><span class="highlight">Lifestyle</span> <span class="highlight">-</span> Vienna</h1>
             <p>Premium boutique cycling experiences inspired by Afrobeats Culture</p>
         </div>
     </section>
