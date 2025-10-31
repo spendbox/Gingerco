@@ -231,10 +231,24 @@
 
         .two-column-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .column .price {
+            font-weight: 700;
+        }
+
+        .gold-notice {
+            color: var(--gold);
+            text-align: center;
+            margin-top: 3rem;
+            font-weight: 500;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .column h2 {
@@ -623,7 +637,11 @@
                 gap: 2rem;
             }
 
-            .two-column-grid,
+            .two-column-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
             .benefits-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -756,18 +774,22 @@
     <section class="two-column">
         <div class="two-column-grid">
             <div class="column">
+                <h2>Ticket Prices</h2>
+                <p>Afternoon Sessions (1&2): <span class="price">€59</span></p>
+                <p>Evening Sessions (3&4): <span class="price">€68</span></p>
+                <p style="margin-top: 1.5rem;">Use the Early Bird Discount code at checkout to unlock reduced ticket prices. Early Bird tickets are limited, so be sure to secure your sport early!</p>
+            </div>
+            <div class="column">
                 <h2>Capacity</h2>
-                <p>400 riders across four sessions (100 bikes per session)</p>
-                <p>Total attendance of 800-1000 (400 riders, 400 guests, 200+ entering riders and their accompanying audience for a vibrant, high energy atmosphere)</p>
+                <p>400 riders across four sessions (100 bikes per session) and a total day-long attendance of 800-1,000 guests; Combining riders and their accompanying audience for a vibrant, high energy atmosphere</p>
             </div>
             <div class="column">
                 <h2>Program Highlights</h2>
-                <ul>
-                    <li>4 Themed Afrobeats rides led by GB - Afrobeats Cycling Master Trainer</li>
-                    <li>Concert-grade sound, light, special effects and visuals provided by Austria's top live production houses</li>
-                </ul>
+                <p>4 themed Afrobeats rides led by Gbolahan Ore (GB) - Afrobeats Cycling Master Trainer</p>
+                <p style="margin-top: 1rem;">Concert-grade sound, light, special effects and visuals provided by Austria's top production houses</p>
             </div>
         </div>
+        <p class="gold-notice">All riders must be seated 20 minutes before the start of their session for instructions and mild entertainment.</p>
     </section>
 
     <section class="gallery">
