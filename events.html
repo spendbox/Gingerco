@@ -612,6 +612,31 @@
             stroke-linejoin: round;
         }
 
+        .ticket-vendor {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #333;
+            margin-top: 2rem;
+        }
+
+        .ticket-vendor h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .ticket-vendor img {
+            max-width: 180px;
+            height: auto;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .ticket-vendor img:hover {
+            opacity: 1;
+        }
+
         .footer-bottom {
             border-top: 1px solid #333;
             padding-top: 2rem;
@@ -776,9 +801,13 @@
         <div class="two-column-grid">
             <div class="column">
                 <h2>Ticket Prices</h2>
-                <p>Afternoon Sessions (1&2): <span class="price">€59</span></p>
-                <p>Evening Sessions (3&4): <span class="price">€68</span></p>
-                <p style="margin-top: 1.5rem;">Use the Early Bird Discount code at checkout to unlock reduced ticket prices. Early Bird tickets are limited, so be sure to secure your sport early!</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem; margin-bottom: 1.5rem;">
+                    <p>Session 1: <span class="price">€55</span></p>
+                    <p>Session 3: <span class="price">€70</span></p>
+                    <p>Session 2: <span class="price">€60</span></p>
+                    <p>Session 4: <span class="price">€70</span></p>
+                </div>
+                <p>Use the Early Bird Discount code at checkout to unlock reduced ticket prices. Early Bird tickets are limited, so be sure to secure your sport early!</p>
             </div>
             <div class="column">
                 <h2>Capacity</h2>
@@ -913,6 +942,10 @@
                     </a>
                 </div>
             </div>
+        </div>
+        <div class="ticket-vendor">
+            <h4>Our Ticket Vendor</h4>
+            <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761942632/ticket_partner_1_gnrkgo.jpg" alt="Our Ticket Vendor">
         </div>
         <div class="footer-bottom">
             <p>© 2025 All rights reserved to Ginger & Co</p>
