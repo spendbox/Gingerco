@@ -935,6 +935,9 @@
     <!-- Noscript content for added SEO -->
     <noscript><a href="https://www.eventbrite.com/e/afrobeats-indoor-cycling-event-vienna-takeover-2025-tickets-1915105675629" rel="noopener noreferrer" target="_blank">Buy Tickets on Eventbrite</a></noscript>
 
+    <!-- Hidden button that triggers Eventbrite widget -->
+    <button id="eventbrite-widget-modal-trigger-1915105675629" type="button" style="display: none;">Buy Tickets</button>
+
     <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
 
     <script>
@@ -954,10 +957,14 @@
 
         // Make all "Get Tickets" and "Reserve" buttons trigger Eventbrite modal
         document.addEventListener('DOMContentLoaded', function() {
+            const eventbriteButton = document.getElementById('eventbrite-widget-modal-trigger-1915105675629');
             const ticketButtons = document.querySelectorAll('.btn-primary[href="#tickets"], .btn-gold[href="#reserve"]');
+
             ticketButtons.forEach(button => {
-                button.id = 'eventbrite-widget-modal-trigger-1915105675629';
-                button.removeAttribute('href');
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    eventbriteButton.click();
+                });
             });
         });
 
