@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Afrobeats Indoor Cycling: Vienna Takeover 2025 - Ginger & Co.</title>
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
         
@@ -836,8 +837,17 @@
                     <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/f_auto,q_auto/Events_Page_image_1_aq9xzu" alt="Event Gallery 3">
                 </div>
             </div>
-            <div class="video-section" id="eventVideoBtn">
-                <div class="play-button"></div>
+            <div class="video-section">
+                <video controls style="width: 100%; height: 100%; border-radius: 8px; display: block;">
+                    <source src="https://res.cloudinary.com/dxhfgtzte/video/upload/v1761814536/Video_3_tojf2k.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <!-- Ticket Vendor -->
+            <div class="ticket-vendor" style="margin-top: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <h4>Our Ticket Vendor</h4>
+                <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761944771/Wien_Ticket_No_BG_epmtyy.png" alt="Our Ticket Vendor">
             </div>
         </div>
     </section>
@@ -943,26 +953,11 @@
                 </div>
             </div>
         </div>
-        <div class="ticket-vendor">
-            <h4>Our Ticket Vendor</h4>
-            <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761944771/Wien_Ticket_No_BG_epmtyy.png" alt="Our Ticket Vendor">
-        </div>
         <div class="footer-bottom">
             <p>© 2025 All rights reserved to Ginger & Co</p>
             <p>For events or sponsorship inquiries contact: <a href="mailto:events@gingerandco.at" style="color: var(--gold);">events@gingerandco.at</a></p>
         </div>
     </footer>
-
-    <!-- Video Modal -->
-    <div id="eventVideoModal" class="video-modal">
-        <div class="video-modal-content">
-            <span class="video-modal-close" id="closeEventModal">&times;</span>
-            <video id="eventModalVideo" controls>
-                <source src="https://res.cloudinary.com/dxhfgtzte/video/upload/v1761814536/Video_3_tojf2k.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </div>
 
     <!-- Eventbrite Widget -->
     <!-- Noscript content for added SEO -->
@@ -1001,43 +996,6 @@
             });
         });
 
-        // Video Modal functionality for events page
-        const eventVideoBtn = document.getElementById('eventVideoBtn');
-        const eventVideoModal = document.getElementById('eventVideoModal');
-        const closeEventModal = document.getElementById('closeEventModal');
-        const eventModalVideo = document.getElementById('eventModalVideo');
-
-        // Open modal when video section is clicked
-        eventVideoBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            eventVideoModal.classList.add('active');
-            eventModalVideo.play();
-        });
-
-        // Close modal when X is clicked
-        closeEventModal.addEventListener('click', function() {
-            eventVideoModal.classList.remove('active');
-            eventModalVideo.pause();
-            eventModalVideo.currentTime = 0;
-        });
-
-        // Close modal when clicking outside the video
-        eventVideoModal.addEventListener('click', function(e) {
-            if (e.target === eventVideoModal) {
-                eventVideoModal.classList.remove('active');
-                eventModalVideo.pause();
-                eventModalVideo.currentTime = 0;
-            }
-        });
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && eventVideoModal.classList.contains('active')) {
-                eventVideoModal.classList.remove('active');
-                eventModalVideo.pause();
-                eventModalVideo.currentTime = 0;
-            }
-        });
     </script>
 </body>
 </html>

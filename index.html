@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ginger & Co. - Afrobeats Fitness and Lifestyle</title>
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
     </style>
@@ -188,7 +189,7 @@
         .studio-title {
             font-family: 'League Spartan', sans-serif;
             font-weight: 500;
-            font-size: 1.1rem;
+            font-size: 2rem;
             margin-bottom: 0.5rem;
         }
 
@@ -842,6 +843,9 @@
             line-height: 1.6;
             cursor: pointer;
             font-weight: 400;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
         }
 
         .declaration-item label strong {
@@ -990,6 +994,91 @@
 
             .session-checkboxes {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        /* Coming Soon Modal */
+        .coming-soon-modal {
+            display: none;
+            position: fixed;
+            z-index: 1002;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow-y: auto;
+        }
+
+        .coming-soon-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .coming-soon-content {
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .coming-soon-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--medium-gray);
+            cursor: pointer;
+            transition: color 0.3s;
+            background: none;
+            border: none;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .coming-soon-close:hover {
+            color: var(--dark);
+        }
+
+        .coming-soon-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500 !important;
+            color: var(--dark);
+        }
+
+        .coming-soon-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--medium-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .coming-soon-emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .coming-soon-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .coming-soon-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .coming-soon-content p {
+                font-size: 1rem;
             }
         }
 
@@ -1167,10 +1256,12 @@
                     <div class="stars">★★★★★</div>
                     <p>"Loved being there today, it’s always such a good time! Thanks for making my morning start off in a special way."</p>
                 </div>
-                <div class="video-testimonial" id="testimonialVideoBtn">
-                    <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761816046/Testimonial_Placeholder_w4pfrs.jpg" alt="Video Testimonial" class="video-thumbnail">
+                <div class="video-testimonial">
                     <h4>Video Testimonial</h4>
-                    <div class="video-play"></div>
+                    <video controls style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <source src="https://res.cloudinary.com/dxhfgtzte/video/upload/v1761804502/WhatsApp_Video_2025-10-26_at_1.13.48_PM_xaldy8.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
         </div>
@@ -1234,26 +1325,11 @@
                 </div>
             </div>
         </div>
-        <div class="ticket-vendor">
-            <h4>Our Ticket Vendor</h4>
-            <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761944771/Wien_Ticket_No_BG_epmtyy.png" alt="Our Ticket Vendor">
-        </div>
         <div class="footer-bottom">
             <p>© 2025 All rights reserved to Ginger & Co</p>
             <p>For events or sponsorship inquiries contact: <a href="mailto:events@gingerandco.at" style="color: var(--gold);">events@gingerandco.at</a></p>
         </div>
     </footer>
-
-    <!-- Video Modal -->
-    <div id="videoModal" class="video-modal">
-        <div class="video-modal-content">
-            <span class="video-modal-close" id="closeModal">&times;</span>
-            <video id="modalVideo" controls>
-                <source src="https://res.cloudinary.com/dxhfgtzte/video/upload/v1761804502/WhatsApp_Video_2025-10-26_at_1.13.48_PM_xaldy8.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </div>
 
     <!-- Pre-Registration Modal -->
     <div id="preRegistrationModal" class="pre-registration-modal">
@@ -1310,10 +1386,11 @@
                     </div>
                 </div>
 
-                <!-- Group Size -->
+                <!-- Guest(s) -->
                 <div class="form-group">
-                    <label for="groupSize">Group Size</label>
+                    <label for="groupSize">Guest(s)</label>
                     <select id="groupSize" name="groupSize">
+                        <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -1325,6 +1402,7 @@
                         <option value="9">9</option>
                         <option value="10">10</option>
                     </select>
+                    <p style="font-size: 0.85rem; color: var(--medium-gray); margin-top: 0.25rem;">How many viewing guests?</p>
                 </div>
 
                 <!-- Arrival Notice -->
@@ -1433,30 +1511,18 @@
         </div>
     </div>
 
-    <!-- Eventbrite Widget -->
-    <!-- Noscript content for added SEO -->
-    <noscript><a href="https://www.eventbrite.com/e/afrobeats-indoor-cycling-event-vienna-takeover-2025-tickets-1915105675629" rel="noopener noreferrer" target="_blank">Buy Tickets on Eventbrite</a></noscript>
-
-    <!-- Hidden button that triggers Eventbrite widget -->
-    <button id="eventbrite-widget-modal-trigger-1915105675629" type="button" style="display: none;">Buy Tickets</button>
-
-    <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
+    <!-- Coming Soon Modal -->
+    <div id="comingSoonModal" class="coming-soon-modal">
+        <div class="coming-soon-content">
+            <button class="coming-soon-close" id="closeComingSoonModal">&times;</button>
+            <div class="coming-soon-emoji">🚧 🚴🏾‍♀️</div>
+            <h2>Almost Ready!</h2>
+            <p>The Vienna ticket link isn't live just yet — we're putting the final touches on it.</p>
+            <p>Check back in a few days to secure your spot. Thanks for your patience and excitement!</p>
+        </div>
+    </div>
 
     <script>
-        // Eventbrite Widget Setup
-        var exampleCallback = function() {
-            console.log('Order complete!');
-        };
-
-        window.EBWidgets.createWidget({
-            widgetType: 'checkout',
-            eventId: '1915105675629',
-            promoCode: 'Ginger2025',
-            modal: true,
-            modalTriggerElementId: 'eventbrite-widget-modal-trigger-1915105675629',
-            onOrderComplete: exampleCallback
-        });
-
         // Pre-Registration Modal & Form Handling
         document.addEventListener('DOMContentLoaded', function() {
             const preRegModal = document.getElementById('preRegistrationModal');
@@ -1466,11 +1532,22 @@
             const detailsContent = document.getElementById('detailsContent');
             const loadingSpinner = document.getElementById('loadingSpinner');
             const submitBtn = document.getElementById('submitBtn');
-            const eventbriteButton = document.getElementById('eventbrite-widget-modal-trigger-1915105675629');
+            const comingSoonModal = document.getElementById('comingSoonModal');
+            const closeComingSoonBtn = document.getElementById('closeComingSoonModal');
             const ticketButtons = document.querySelectorAll('.btn-primary[href="#tickets"]');
+            const reserveButtons = document.querySelectorAll('.btn-gold[href="#reserve"]');
 
-            // Open pre-registration modal instead of Eventbrite
+            // Open pre-registration modal for ticket buttons
             ticketButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    preRegModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Open pre-registration modal for reserve buttons
+            reserveButtons.forEach(button => {
                 button.addEventListener('click', function(e) {
                     e.preventDefault();
                     preRegModal.classList.add('active');
@@ -1488,6 +1565,20 @@
             preRegModal.addEventListener('click', function(e) {
                 if (e.target === preRegModal) {
                     preRegModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Close coming soon modal
+            closeComingSoonBtn.addEventListener('click', function() {
+                comingSoonModal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // Close coming soon modal when clicking outside
+            comingSoonModal.addEventListener('click', function(e) {
+                if (e.target === comingSoonModal) {
+                    comingSoonModal.classList.remove('active');
                     document.body.style.overflow = '';
                 }
             });
@@ -1564,29 +1655,29 @@
                 submitBtn.style.display = 'none';
                 loadingSpinner.style.display = 'block';
 
-                // Collect form data
-                const formData = {
-                    fullName: document.getElementById('fullName').value,
-                    email: document.getElementById('email').value,
-                    phone: document.getElementById('phone').value,
-                    location: document.getElementById('location').value || 'Not specified',
-                    groupSize: document.getElementById('groupSize').value,
-                    ageConfirmation: document.getElementById('ageConfirmation').checked,
-                    physicalReadiness: document.getElementById('physicalReadiness').checked,
-                    liabilityWaiver: document.getElementById('liabilityWaiver').checked,
-                    recordingNotice: document.getElementById('recordingNotice').checked,
-                    stayConnected: document.getElementById('stayConnected').checked,
-                    gdprConsent: document.getElementById('gdprConsent').checked,
-                    mediaConsent: document.getElementById('mediaConsent').checked,
-                    timestamp: new Date().toISOString()
-                };
-
                 // Collect selected sessions
                 const selectedSessions = [];
                 document.querySelectorAll('input[name="sessions"]:checked').forEach(checkbox => {
                     selectedSessions.push(checkbox.value);
                 });
-                formData.sessions = selectedSessions.length > 0 ? selectedSessions.join(', ') : 'None selected';
+
+                // Collect form data with exact field names for Google Sheets
+                const formData = {
+                    "Timestamp": new Date().toISOString(),
+                    "Full Name": document.getElementById('fullName').value,
+                    "Email": document.getElementById('email').value,
+                    "Phone": document.getElementById('phone').value,
+                    "Location": document.getElementById('location').value || 'Not specified',
+                    "Sessions": selectedSessions.length > 0 ? selectedSessions.join(', ') : 'None selected',
+                    "Group Size": document.getElementById('groupSize').value,
+                    "Age Confirm": document.getElementById('ageConfirmation').checked ? 'Yes' : 'No',
+                    "Physical Readiness": document.getElementById('physicalReadiness').checked ? 'Yes' : 'No',
+                    "Liability Waiver": document.getElementById('liabilityWaiver').checked ? 'Yes' : 'No',
+                    "Event Recording": document.getElementById('recordingNotice').checked ? 'Yes' : 'No',
+                    "Stay Connected": document.getElementById('stayConnected').checked ? 'Yes' : 'No',
+                    "GDPR Consent": document.getElementById('gdprConsent').checked ? 'Yes' : 'No',
+                    "Media Consent": document.getElementById('mediaConsent').checked ? 'Yes' : 'No'
+                };
 
                 try {
                     // Submit to Google Sheets
@@ -1613,16 +1704,15 @@
                     submitBtn.style.display = 'block';
                     loadingSpinner.style.display = 'none';
 
-                    // Open Eventbrite widget
+                    // Show coming soon modal
                     setTimeout(() => {
-                        eventbriteButton.click();
+                        comingSoonModal.classList.add('active');
                     }, 300);
 
                 } catch (error) {
                     console.error('Error submitting form:', error);
-                    alert('Thank you for your registration. Proceeding to ticket purchase...');
 
-                    // Even if there's an error, proceed to Eventbrite
+                    // Even if there's an error, show coming soon modal
                     preRegModal.classList.remove('active');
                     document.body.style.overflow = '';
                     preRegForm.reset();
@@ -1630,49 +1720,13 @@
                     loadingSpinner.style.display = 'none';
 
                     setTimeout(() => {
-                        eventbriteButton.click();
+                        comingSoonModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
                     }, 300);
                 }
             });
         });
 
-        // Video Modal functionality
-        const testimonialBtn = document.getElementById('testimonialVideoBtn');
-        const videoModal = document.getElementById('videoModal');
-        const closeModal = document.getElementById('closeModal');
-        const modalVideo = document.getElementById('modalVideo');
-
-        // Open modal when testimonial card is clicked
-        testimonialBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            videoModal.classList.add('active');
-            modalVideo.play();
-        });
-
-        // Close modal when X is clicked
-        closeModal.addEventListener('click', function() {
-            videoModal.classList.remove('active');
-            modalVideo.pause();
-            modalVideo.currentTime = 0;
-        });
-
-        // Close modal when clicking outside the video
-        videoModal.addEventListener('click', function(e) {
-            if (e.target === videoModal) {
-                videoModal.classList.remove('active');
-                modalVideo.pause();
-                modalVideo.currentTime = 0;
-            }
-        });
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
-                videoModal.classList.remove('active');
-                modalVideo.pause();
-                modalVideo.currentTime = 0;
-            }
-        });
     </script>
 </body>
 </html>
