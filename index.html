@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ginger & Co. - Afrobeats Fitness and Lifestyle</title>
     <link rel="icon" type="image/png" href="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png">
+
+    <!-- Schema.org Organization markup for SEO and logo visibility in search results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Ginger & Co.",
+      "url": "https://gingerandco.at",
+      "logo": "https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png",
+      "description": "Afrobeats Fitness and Lifestyle - Join our energetic fitness community",
+      "sameAs": [
+        "https://www.instagram.com/gingerandco.official/",
+        "https://www.tiktok.com/@gingerandco.official",
+        "https://www.linkedin.com/company/ginger-co/"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@gingerandco.at",
+        "contactType": "Customer Service"
+      }
+    }
+    </script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
     </style>
@@ -614,12 +637,6 @@
             column-gap: 150px;
             row-gap: 2rem;
             margin-bottom: 2rem;
-            justify-content: space-between;
-        }
-
-        .footer-container > div:nth-child(2),
-        .footer-container > div:nth-child(3) {
-            justify-self: end;
         }
 
         .footer-brand {
@@ -1236,8 +1253,12 @@
             }
 
             .footer-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
                 gap: 2rem;
+            }
+
+            .footer-container > div:first-child {
+                grid-column: 1 / -1;
             }
 
             .footer-company-name {
