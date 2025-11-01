@@ -1838,37 +1838,35 @@
                     selectedSessions.push(checkbox.value);
                 });
 
-                // Collect form data with exact field names for Google Sheets
+                // Collect form data with camelCase field names for Google Sheets
                 const formData = {
-                    "Timestamp": new Date().toISOString(),
-                    "Full Name": document.getElementById('fullName').value,
-                    "Email": document.getElementById('email').value,
-                    "Phone": document.getElementById('phone').value,
-                    "Location": document.getElementById('location').value || 'Not specified',
-                    "Sessions": selectedSessions.length > 0 ? selectedSessions.join(', ') : 'None selected',
-                    "Group Size": document.getElementById('groupSize').value,
-                    "Age Confirm": document.getElementById('ageConfirmation').checked ? 'Yes' : 'No',
-                    "Physical Readiness": document.getElementById('physicalReadiness').checked ? 'Yes' : 'No',
-                    "Liability Waiver": document.getElementById('liabilityWaiver').checked ? 'Yes' : 'No',
-                    "Event Recording": document.getElementById('recordingNotice').checked ? 'Yes' : 'No',
-                    "Stay Connected": document.getElementById('stayConnected').checked ? 'Yes' : 'No',
-                    "GDPR Consent": document.getElementById('gdprConsent').checked ? 'Yes' : 'No',
-                    "Media Consent": document.getElementById('mediaConsent').checked ? 'Yes' : 'No'
+                    "timestamp": new Date().toISOString(),
+                    "fullName": document.getElementById('fullName').value,
+                    "email": document.getElementById('email').value,
+                    "phone": document.getElementById('phone').value,
+                    "location": document.getElementById('location').value || 'Not specified',
+                    "sessions": selectedSessions.length > 0 ? selectedSessions.join(', ') : 'None selected',
+                    "groupSize": document.getElementById('groupSize').value,
+                    "ageConfirm": document.getElementById('ageConfirmation').checked ? 'Yes' : 'No',
+                    "physicalReadiness": document.getElementById('physicalReadiness').checked ? 'Yes' : 'No',
+                    "liabilityWaiver": document.getElementById('liabilityWaiver').checked ? 'Yes' : 'No',
+                    "eventRecording": document.getElementById('recordingNotice').checked ? 'Yes' : 'No',
+                    "stayConnected": document.getElementById('stayConnected').checked ? 'Yes' : 'No',
+                    "gdprConsent": document.getElementById('gdprConsent').checked ? 'Yes' : 'No',
+                    "mediaConsent": document.getElementById('mediaConsent').checked ? 'Yes' : 'No'
                 };
 
                 try {
                     // Submit to Google Sheets
                     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxBCnq3023OZ-LCYXhQFRYFSfLmgXPKt3THAq1o-CrWc0t-NHvgHmMnOWC6ajnPmVo/exec';
 
-                    // Create URLSearchParams for better Google Sheets compatibility
-                    const params = new URLSearchParams();
-                    Object.keys(formData).forEach(key => {
-                        params.append(key, formData[key]);
-                    });
-
-                    const response = await fetch(GOOGLE_SCRIPT_URL + '?' + params.toString(), {
-                        method: 'GET',
-                        mode: 'no-cors'
+                    const response = await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
                     });
 
                     // Wait a moment to ensure data is submitted
