@@ -22,12 +22,22 @@
 [build.processing.images]
   compress = true
 
-# Redirect rules for clean URLs and SPA behavior
+# Redirect rules for clean URLs
+# No catch-all redirect needed for multi-page static site
+# Let Netlify serve files directly
+
+# Redirect root to index.html (optional, Netlify does this by default)
 [[redirects]]
-  from = "/*"
+  from = "/"
   to = "/index.html"
   status = 200
-  force = false
+
+# Redirect www to non-www
+[[redirects]]
+  from = "https://www.gingerandco.at/*"
+  to = "https://gingerandco.at/:splat"
+  status = 301
+  force = true
 
 # Security headers
 [[headers]]
@@ -37,6 +47,7 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
     Cache-Control = "no-cache, no-store, must-revalidate"
 
 # HTML files - no caching for instant updates
