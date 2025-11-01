@@ -14,6 +14,11 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
         :root {
             --gold: #D4AF37;
             --dark: #1a1a1a;
@@ -104,20 +109,42 @@
         .hero {
             position: relative;
             height: 600px;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://res.cloudinary.com/dxhfgtzte/image/upload/v1761733789/Events_Page_image_1_aq9xzu.png');
+            background: url('https://res.cloudinary.com/dxhfgtzte/image/upload/f_auto,q_auto/v1761820538/index_hero_f72gfe.heic');
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
+            justify-content: flex-start;
             color: white;
+            overflow: hidden;
+            padding: 0 5%;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(8deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: left;
+            max-width: 800px;
         }
 
         .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
             font-weight: 500 !important;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
         }
 
         .hero-content h1 .highlight {
@@ -125,9 +152,9 @@
         }
 
         .hero-content p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 2rem;
-            max-width: 600px;
+            line-height: 1.4;
         }
 
         .about {
@@ -151,6 +178,28 @@
         .about-image img {
             width: 100%;
             border-radius: 8px;
+        }
+
+        .studio-info {
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        .studio-title {
+            font-family: 'League Spartan', sans-serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .studio-title .coming-soon {
+            color: var(--gold);
+        }
+
+        .studio-description {
+            color: var(--medium-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .about-content h2 {
@@ -346,41 +395,124 @@
         }
 
         .video-testimonial {
-            background: var(--light-gray);
-            padding: 3rem 2rem;
+            background: var(--dark);
+            padding: 0;
             border-radius: 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            height: 100%;
+            min-height: 250px;
         }
 
         .video-testimonial h4 {
-            margin-bottom: 1.5rem;
+            position: absolute;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            margin: 0;
             font-weight: 500 !important;
         }
 
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
         .video-play {
-            width: 60px;
-            height: 60px;
-            background: var(--dark);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(26, 26, 26, 0.9);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            z-index: 2;
         }
 
         .video-play:hover {
-            transform: scale(1.1);
+            transform: translate(-50%, -50%) scale(1.1);
+            background: var(--gold);
         }
 
         .video-play::after {
             content: '▶';
             color: white;
-            font-size: 1.5rem;
-            margin-left: 3px;
+            font-size: 2rem;
+            margin-left: 5px;
+        }
+
+        /* Video Modal Styles */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        .video-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            animation: slideIn 0.3s;
+        }
+
+        .video-modal video {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .video-modal-close:hover {
+            color: var(--gold);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         footer {
@@ -406,8 +538,8 @@
         }
 
         .footer-logo {
-            width: 80px;
-            height: 80px;
+            width: 120px;
+            height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -461,6 +593,7 @@
 
         .footer-links ul {
             list-style: none;
+            opacity: 0.61;
         }
 
         .footer-links ul li {
@@ -506,6 +639,358 @@
             stroke-width: 2;
             stroke-linecap: round;
             stroke-linejoin: round;
+        }
+
+        .ticket-vendor {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #333;
+            margin-top: 2rem;
+        }
+
+        .ticket-vendor h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .ticket-vendor img {
+            max-width: 180px;
+            height: auto;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .ticket-vendor img:hover {
+            opacity: 1;
+        }
+
+        /* Pre-registration Modal Styles */
+        .pre-registration-modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow-y: auto;
+        }
+
+        .pre-registration-modal.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .pre-reg-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            margin: 2rem auto;
+        }
+
+        .pre-reg-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--medium-gray);
+            cursor: pointer;
+            transition: color 0.3s;
+            background: none;
+            border: none;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pre-reg-close:hover {
+            color: var(--dark);
+        }
+
+        .pre-reg-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500 !important;
+            text-transform: uppercase;
+        }
+
+        .pre-reg-content .subtitle {
+            color: var(--medium-gray);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .form-group label .required {
+            color: var(--gold);
+            margin-left: 2px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .session-checkboxes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--gold);
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            font-weight: 400;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .arrival-notice {
+            background: #fff3cd;
+            border-left: 4px solid var(--gold);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            color: #856404;
+        }
+
+        .declarations-section,
+        .consent-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--light-gray);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-family: 'League Spartan', sans-serif;
+        }
+
+        .declaration-item,
+        .consent-item {
+            margin-bottom: 1.2rem;
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+        }
+
+        .declaration-item input[type="checkbox"],
+        .consent-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            cursor: pointer;
+            flex-shrink: 0;
+            accent-color: var(--gold);
+        }
+
+        .declaration-item label,
+        .consent-item label {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            cursor: pointer;
+            font-weight: 400;
+        }
+
+        .declaration-item label strong {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .consent-summary {
+            margin-bottom: 1rem;
+        }
+
+        .collapsible-details {
+            margin-top: 1rem;
+        }
+
+        .details-toggle {
+            background: var(--light-gray);
+            border: none;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .details-toggle:hover {
+            background: #e0e0e0;
+        }
+
+        .details-toggle::after {
+            content: '▼';
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .details-toggle.active::after {
+            transform: rotate(180deg);
+        }
+
+        .details-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--light-gray);
+            padding: 0 1rem;
+            border-radius: 0 0 4px 4px;
+        }
+
+        .details-content.active {
+            max-height: 1000px;
+            padding: 1rem;
+        }
+
+        .details-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .details-content h4:first-child {
+            margin-top: 0;
+        }
+
+        .details-content p {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+        }
+
+        .submit-btn {
+            background: var(--dark);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 2rem;
+            transition: background 0.3s;
+            font-family: 'League Spartan', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .submit-btn:hover {
+            background: #000;
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .form-group.error input,
+        .form-group.error select {
+            border-color: #d32f2f;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            border: 3px solid var(--light-gray);
+            border-top: 3px solid var(--gold);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .pre-reg-content {
+                padding: 2rem 1.5rem;
+                margin: 1rem auto;
+            }
+
+            .session-checkboxes {
+                grid-template-columns: 1fr;
+            }
         }
 
         .footer-bottom {
@@ -592,7 +1077,7 @@
         <div class="logo-container">
             <a href="index.html" style="text-decoration: none;">
                 <div class="logo-box">
-                    <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/f_auto,q_auto/Ginger_logo_1_l0s1ql" alt="Ginger & Co. Logo">
+                    <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png" alt="Ginger & Co. Logo">
                 </div>
             </a>
             <nav>
@@ -604,8 +1089,7 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1><span class="highlight">Afrobeats</span> Fitness and<br>Lifestyle <span class="highlight">-</span>Vienna</h1>
-            <p>Premium boutique cycling experiences inspired by Afrobeats Culture</p>
+            <h1><span style="font-weight: 700; color: var(--gold);">GINGER & CO.</span><br>VIENNA-BASED BOUTIQUE FITNESS AND LIFESTYLE COMPANY.</h1>
         </div>
     </section>
 
@@ -613,13 +1097,21 @@
         <div class="about-container">
             <div class="about-image">
                 <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/f_auto,q_auto/About_us_Image_dtg8ax" alt="Cycling Studio">
+                <div class="studio-info">
+                    <div class="studio-title">GINGER & CO. STUDIO <span class="coming-soon">— COMING SOON</span></div>
+                    <p class="studio-description">Our flagship Afro-modern boutique fitness & wellness studio in 1220 Vienna</p>
+                </div>
             </div>
             <div class="about-content">
-                <h2>ABOUT GINGER & CO. BOUTIQUE FITNESS</h2>
-                <p>Ginger & Co cycling experiences brings fitness experiences with cultural energy of Afrobeats. We design inclusive classes led by expert instructors. This is a space where movement meets music and community.</p>
-                <p><strong>GINGER & CO. STUDIO — <span class="status-badge">COMING SOON</span></strong></p>
-                <p>Our flagship Afro-modern boutique fitness & wellness studio in Vienna — anchored by a 100-bike cycling arena, with Pilates, functional training, and family-friendly wellness spaces.</p>
-            </div>
+                <h2>ABOUT US</h2>
+                <p>Redefining how rhythm, performance, and culture come together.</p>
+
+                <p>Ginger & Co. creates immersive, music-powered group-fitness experiences that inspire energy, connection, and community.</p>
+
+                <p>Driven by a vision to redefine boutique fitness in Vienna through cultural rhythm, premium wellness, and inclusive lifestyle experiences, Ginger & Co. is on a mission to build Austria's first Afro-modern boutique studio — a space designed to deliver transformational fitness powered by music, movement, and community.</p>
+
+                <p>Standing at the intersection of wellness and culture, Ginger & Co. connects people from diverse backgrounds through high-energy programs and signature events such as Afrobeats Indoor Cycling, while shaping a new era of culturally inspired fitness in Europe.</p>
+          </div>
         </div>
     </section>
 
@@ -628,7 +1120,10 @@
             <div>
                 <h2>AFROBEATS INDOOR CYCLING: VIENNA TAKEOVER 2025</h2>
                 <div class="event-video">
-                    <div class="play-button"></div>
+                    <video controls style="width: 100%; height: 100%; border-radius: 8px;">
+                        <source src="https://res.cloudinary.com/dxhfgtzte/video/upload/v1761804532/First_Afrobeats_Cycling_Event_Nov_2024_Video_Recap_2_ukkunk.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
             <div class="event-info">
@@ -663,16 +1158,17 @@
             <div class="testimonials-header">TESTIMONIALS</div>
             <div class="testimonials">
                 <div class="testimonial">
-                    <h4>James Pattinson</h4>
+                    <h4>S.</h4>
                     <div class="stars">★★★★★</div>
-                    <p>"Best class I've ever taken, the music and energy are unmatched!"</p>
+                    <p>"Special thanks for this training, the motivation and the energy!! I love it!"</p>
                 </div>
                 <div class="testimonial">
-                    <h4>Mathew Jacobs</h4>
+                    <h4>T.</h4>
                     <div class="stars">★★★★★</div>
-                    <p>"Premium experience, welcoming instructors and community!"</p>
+                    <p>"Loved being there today, it’s always such a good time! Thanks for making my morning start off in a special way."</p>
                 </div>
-                <div class="video-testimonial">
+                <div class="video-testimonial" id="testimonialVideoBtn">
+                    <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761816046/Testimonial_Placeholder_w4pfrs.jpg" alt="Video Testimonial" class="video-thumbnail">
                     <h4>Video Testimonial</h4>
                     <div class="video-play"></div>
                 </div>
@@ -685,7 +1181,7 @@
             <div>
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/f_auto,q_auto/Ginger_logo_1_l0s1ql" alt="Ginger & Co. Logo">
+                        <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png" alt="Ginger & Co. Logo">
                     </div>
                     <h3 class="footer-company-name">Ginger &<br>Co.</h3>
                 </div>
@@ -738,10 +1234,445 @@
                 </div>
             </div>
         </div>
+        <div class="ticket-vendor">
+            <h4>Our Ticket Vendor</h4>
+            <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761944771/Wien_Ticket_No_BG_epmtyy.png" alt="Our Ticket Vendor">
+        </div>
         <div class="footer-bottom">
             <p>© 2025 All rights reserved to Ginger & Co</p>
             <p>For events or sponsorship inquiries contact: <a href="mailto:events@gingerandco.at" style="color: var(--gold);">events@gingerandco.at</a></p>
         </div>
     </footer>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <span class="video-modal-close" id="closeModal">&times;</span>
+            <video id="modalVideo" controls>
+                <source src="https://res.cloudinary.com/dxhfgtzte/video/upload/v1761804502/WhatsApp_Video_2025-10-26_at_1.13.48_PM_xaldy8.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <!-- Pre-Registration Modal -->
+    <div id="preRegistrationModal" class="pre-registration-modal">
+        <div class="pre-reg-content">
+            <button class="pre-reg-close" id="closePreRegModal">&times;</button>
+            <h2>Event Pre-Registration</h2>
+            <p class="subtitle">Complete your details to proceed to ticket purchase</p>
+
+            <form id="preRegistrationForm">
+                <!-- Personal Information -->
+                <div class="form-group">
+                    <label for="fullName">Full Name <span class="required">*</span></label>
+                    <input type="text" id="fullName" name="fullName" required>
+                    <div class="error-message">Please enter your full name</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message">Please enter a valid email address</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" required>
+                    <div class="error-message">Please enter your phone number</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" placeholder="City, Country">
+                </div>
+
+                <!-- Session Selection -->
+                <div class="form-group">
+                    <label>Sessions (select one or more)</label>
+                    <div class="session-checkboxes">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="session1" name="sessions" value="14:00-15:00">
+                            <label for="session1">14:00-15:00</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="session2" name="sessions" value="15:30-16:30">
+                            <label for="session2">15:30-16:30</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="session3" name="sessions" value="17:30-18:30">
+                            <label for="session3">17:30-18:30</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="session4" name="sessions" value="19:00-20:00">
+                            <label for="session4">19:00-20:00</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group Size -->
+                <div class="form-group">
+                    <label for="groupSize">Group Size</label>
+                    <select id="groupSize" name="groupSize">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+
+                <!-- Arrival Notice -->
+                <div class="arrival-notice">
+                    ⚠️ <strong>Important:</strong> Riders must be seated at least 20 minutes before their session starts.
+                </div>
+
+                <!-- Participant Declarations -->
+                <div class="declarations-section">
+                    <div class="section-title">Participant Declarations & Waiver</div>
+
+                    <div class="declaration-item">
+                        <input type="checkbox" id="ageConfirmation" name="ageConfirmation" required>
+                        <label for="ageConfirmation">
+                            <strong>Age Confirmation</strong>
+                            I confirm that I am at least 18 years old, or 16 years old with parental or guardian consent and supervision to participate in this event.
+                        </label>
+                    </div>
+
+                    <div class="declaration-item">
+                        <input type="checkbox" id="physicalReadiness" name="physicalReadiness" required>
+                        <label for="physicalReadiness">
+                            <strong>Physical Readiness</strong>
+                            I understand that Afrobeats Indoor Cycling: Vienna Takeover 2025 is a high-intensity indoor cycling event involving sustained physical activity. I confirm that I am in good health, medically fit to participate, and that I have not been advised otherwise by a qualified medical professional. I take full responsibility for monitoring my own physical condition and participation throughout the event.
+                        </label>
+                    </div>
+
+                    <div class="declaration-item">
+                        <input type="checkbox" id="liabilityWaiver" name="liabilityWaiver" required>
+                        <label for="liabilityWaiver">
+                            <strong>Liability Waiver</strong>
+                            I understand and acknowledge that participation in Afrobeats Indoor Cycling: Vienna Takeover 2025 involves inherent risks associated with physical exercise. By registering, I voluntarily assume all such risks and release and discharge Ginger & Co., its instructors, staff, partners, and affiliates from any and all liability, claims, or demands that may arise from my participation. I understand that I participate voluntarily, at my own risk, and that Ginger & Co. will not be held responsible for any injury, accident, or health-related incident that may occur before, during, or after the event.
+                        </label>
+                    </div>
+
+                    <div class="declaration-item">
+                        <input type="checkbox" id="recordingNotice" name="recordingNotice" required>
+                        <label for="recordingNotice">
+                            <strong>Event Recording Notice</strong>
+                            I understand that this event will be recorded and photographed, as described in the Media Consent section below.
+                        </label>
+                    </div>
+
+                    <div class="declaration-item">
+                        <input type="checkbox" id="stayConnected" name="stayConnected">
+                        <label for="stayConnected">
+                            <strong>Stay Connected (optional)</strong>
+                            I agree to receive follow-up communication about this event and future Ginger & Co. programs, updates, and offers.
+                        </label>
+                    </div>
+                </div>
+
+                <!-- GDPR & Media Consent -->
+                <div class="consent-section">
+                    <div class="section-title">GDPR & Media Consent</div>
+
+                    <div class="consent-summary">
+                        <div class="consent-item">
+                            <input type="checkbox" id="gdprConsent" name="gdprConsent" required>
+                            <label for="gdprConsent">
+                                I agree to the Privacy & Data Consent (GDPR).
+                            </label>
+                        </div>
+
+                        <div class="consent-item">
+                            <input type="checkbox" id="mediaConsent" name="mediaConsent" required>
+                            <label for="mediaConsent">
+                                I acknowledge and agree to the Photography, Filming & Media Consent.
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-details">
+                        <button type="button" class="details-toggle" id="detailsToggle">
+                            View Full Consent Details
+                        </button>
+                        <div class="details-content" id="detailsContent">
+                            <h4>Privacy & Data Consent (GDPR)</h4>
+                            <p>
+                                By submitting this registration form, I confirm that I consent to Ginger & Co. collecting and processing my personal data solely for the purposes of event management, ticketing, safety communication, and post-event follow-up. I understand that Ginger & Co. will handle all data in accordance with the EU General Data Protection Regulation (GDPR) and applicable Austrian privacy laws.
+                            </p>
+                            <p>
+                                My data will not be shared with third parties except where required for event operations (for example, secure payment providers or ticketing platforms), and it will be retained only as long as necessary for these stated purposes. I am aware that I may request access to, correction of, or deletion of my data at any time by contacting privacy@gingerandco.at.
+                            </p>
+
+                            <h4>Photography, Filming & Media Consent</h4>
+                            <p>
+                                I acknowledge that Afrobeats Indoor Cycling: Vienna Takeover 2025 is a live, public event that will be professionally filmed and photographed for documentation, promotional, and educational purposes. By registering, I give Ginger & Co. and its authorised media partners full permission to record, photograph, and use my image, likeness, and voice in event coverage, promotional materials, and digital media worldwide, without compensation or further approval.
+                            </p>
+                            <p>
+                                I understand that filming will also take place in the general audience and viewing areas, and that accompanying guests or spectators may appear incidentally in event footage. By submitting this registration, I confirm that any accompanying guests are aware that the event will be filmed and photographed. Participation in the event requires acknowledgement of this media consent.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loading Spinner -->
+                <div class="loading-spinner" id="loadingSpinner">
+                    <div class="spinner"></div>
+                    <p style="margin-top: 1rem; color: var(--medium-gray);">Submitting your registration...</p>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn" id="submitBtn">Proceed to Ticket Purchase</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Eventbrite Widget -->
+    <!-- Noscript content for added SEO -->
+    <noscript><a href="https://www.eventbrite.com/e/afrobeats-indoor-cycling-event-vienna-takeover-2025-tickets-1915105675629" rel="noopener noreferrer" target="_blank">Buy Tickets on Eventbrite</a></noscript>
+
+    <!-- Hidden button that triggers Eventbrite widget -->
+    <button id="eventbrite-widget-modal-trigger-1915105675629" type="button" style="display: none;">Buy Tickets</button>
+
+    <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
+
+    <script>
+        // Eventbrite Widget Setup
+        var exampleCallback = function() {
+            console.log('Order complete!');
+        };
+
+        window.EBWidgets.createWidget({
+            widgetType: 'checkout',
+            eventId: '1915105675629',
+            promoCode: 'Ginger2025',
+            modal: true,
+            modalTriggerElementId: 'eventbrite-widget-modal-trigger-1915105675629',
+            onOrderComplete: exampleCallback
+        });
+
+        // Pre-Registration Modal & Form Handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const preRegModal = document.getElementById('preRegistrationModal');
+            const closePreRegBtn = document.getElementById('closePreRegModal');
+            const preRegForm = document.getElementById('preRegistrationForm');
+            const detailsToggle = document.getElementById('detailsToggle');
+            const detailsContent = document.getElementById('detailsContent');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const submitBtn = document.getElementById('submitBtn');
+            const eventbriteButton = document.getElementById('eventbrite-widget-modal-trigger-1915105675629');
+            const ticketButtons = document.querySelectorAll('.btn-primary[href="#tickets"]');
+
+            // Open pre-registration modal instead of Eventbrite
+            ticketButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    preRegModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Close pre-registration modal
+            closePreRegBtn.addEventListener('click', function() {
+                preRegModal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // Close modal when clicking outside
+            preRegModal.addEventListener('click', function(e) {
+                if (e.target === preRegModal) {
+                    preRegModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Toggle consent details
+            detailsToggle.addEventListener('click', function() {
+                detailsToggle.classList.toggle('active');
+                detailsContent.classList.toggle('active');
+            });
+
+            // Form validation
+            function validateForm() {
+                let isValid = true;
+                const formGroups = preRegForm.querySelectorAll('.form-group');
+
+                formGroups.forEach(group => {
+                    group.classList.remove('error');
+                });
+
+                // Validate required fields
+                const fullName = document.getElementById('fullName');
+                const email = document.getElementById('email');
+                const phone = document.getElementById('phone');
+
+                if (!fullName.value.trim()) {
+                    fullName.closest('.form-group').classList.add('error');
+                    isValid = false;
+                }
+
+                if (!email.value.trim() || !email.validity.valid) {
+                    email.closest('.form-group').classList.add('error');
+                    isValid = false;
+                }
+
+                if (!phone.value.trim()) {
+                    phone.closest('.form-group').classList.add('error');
+                    isValid = false;
+                }
+
+                // Validate required checkboxes
+                const requiredCheckboxes = [
+                    'ageConfirmation',
+                    'physicalReadiness',
+                    'liabilityWaiver',
+                    'recordingNotice',
+                    'gdprConsent',
+                    'mediaConsent'
+                ];
+
+                requiredCheckboxes.forEach(id => {
+                    const checkbox = document.getElementById(id);
+                    if (!checkbox.checked) {
+                        isValid = false;
+                        checkbox.style.outline = '2px solid #d32f2f';
+                        setTimeout(() => {
+                            checkbox.style.outline = '';
+                        }, 2000);
+                    }
+                });
+
+                return isValid;
+            }
+
+            // Form submission
+            preRegForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                if (!validateForm()) {
+                    alert('Please fill in all required fields and accept all required declarations.');
+                    return;
+                }
+
+                // Show loading spinner
+                submitBtn.style.display = 'none';
+                loadingSpinner.style.display = 'block';
+
+                // Collect form data
+                const formData = {
+                    fullName: document.getElementById('fullName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    location: document.getElementById('location').value || 'Not specified',
+                    groupSize: document.getElementById('groupSize').value,
+                    ageConfirmation: document.getElementById('ageConfirmation').checked,
+                    physicalReadiness: document.getElementById('physicalReadiness').checked,
+                    liabilityWaiver: document.getElementById('liabilityWaiver').checked,
+                    recordingNotice: document.getElementById('recordingNotice').checked,
+                    stayConnected: document.getElementById('stayConnected').checked,
+                    gdprConsent: document.getElementById('gdprConsent').checked,
+                    mediaConsent: document.getElementById('mediaConsent').checked,
+                    timestamp: new Date().toISOString()
+                };
+
+                // Collect selected sessions
+                const selectedSessions = [];
+                document.querySelectorAll('input[name="sessions"]:checked').forEach(checkbox => {
+                    selectedSessions.push(checkbox.value);
+                });
+                formData.sessions = selectedSessions.length > 0 ? selectedSessions.join(', ') : 'None selected';
+
+                try {
+                    // Submit to Google Sheets
+                    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxBCnq3023OZ-LCYXhQFRYFSfLmgXPKt3THAq1o-CrWc0t-NHvgHmMnOWC6ajnPmVo/exec';
+
+                    const response = await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    // Wait a moment to ensure data is submitted
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+
+                    // Close pre-registration modal
+                    preRegModal.classList.remove('active');
+                    document.body.style.overflow = '';
+
+                    // Reset form
+                    preRegForm.reset();
+                    submitBtn.style.display = 'block';
+                    loadingSpinner.style.display = 'none';
+
+                    // Open Eventbrite widget
+                    setTimeout(() => {
+                        eventbriteButton.click();
+                    }, 300);
+
+                } catch (error) {
+                    console.error('Error submitting form:', error);
+                    alert('Thank you for your registration. Proceeding to ticket purchase...');
+
+                    // Even if there's an error, proceed to Eventbrite
+                    preRegModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                    preRegForm.reset();
+                    submitBtn.style.display = 'block';
+                    loadingSpinner.style.display = 'none';
+
+                    setTimeout(() => {
+                        eventbriteButton.click();
+                    }, 300);
+                }
+            });
+        });
+
+        // Video Modal functionality
+        const testimonialBtn = document.getElementById('testimonialVideoBtn');
+        const videoModal = document.getElementById('videoModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalVideo = document.getElementById('modalVideo');
+
+        // Open modal when testimonial card is clicked
+        testimonialBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            videoModal.classList.add('active');
+            modalVideo.play();
+        });
+
+        // Close modal when X is clicked
+        closeModal.addEventListener('click', function() {
+            videoModal.classList.remove('active');
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+        });
+
+        // Close modal when clicking outside the video
+        videoModal.addEventListener('click', function(e) {
+            if (e.target === videoModal) {
+                videoModal.classList.remove('active');
+                modalVideo.pause();
+                modalVideo.currentTime = 0;
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                videoModal.classList.remove('active');
+                modalVideo.pause();
+                modalVideo.currentTime = 0;
+            }
+        });
+    </script>
 </body>
 </html>

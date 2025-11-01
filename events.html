@@ -13,6 +13,11 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
         :root {
             --gold: #D4AF37;
             --dark: #1a1a1a;
@@ -121,7 +126,7 @@
         .hero {
             position: relative;
             height: 600px;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://res.cloudinary.com/dxhfgtzte/image/upload/f_auto,q_auto/Events_Page_image_3_yr9gry');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://res.cloudinary.com/dxhfgtzte/image/upload/v1761804500/Copy_of_ORIGINAL_AFROBEAT_Landscape_wfi74c.png');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -226,10 +231,24 @@
 
         .two-column-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .column .price {
+            font-weight: 700;
+        }
+
+        .gold-notice {
+            color: var(--gold);
+            text-align: center;
+            margin-top: 3rem;
+            font-weight: 500;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .column h2 {
@@ -300,30 +319,43 @@
 
         .video-section {
             max-width: 800px;
+            width: 100%;
             margin: 0 auto;
-            aspect-ratio: 16/9;
-            background: var(--light-gray);
+            background: var(--dark) url('https://res.cloudinary.com/dxhfgtzte/image/upload/v1761896240/Video3_placeholder_1_cropped_odohyo.png') center center / cover no-repeat;
             border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 16/9;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
+        }
+
+        .video-section video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
         }
 
         .play-button {
             width: 80px;
             height: 80px;
-            background: var(--dark);
+            background: rgba(26, 26, 26, 0.9);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            position: absolute;
+            z-index: 2;
         }
 
         .play-button:hover {
             transform: scale(1.1);
+            background: var(--gold);
         }
 
         .play-button::after {
@@ -331,6 +363,50 @@
             color: white;
             font-size: 2rem;
             margin-left: 5px;
+        }
+
+        /* Video Modal Styles */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .video-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+        }
+
+        .video-modal video {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .video-modal-close:hover {
+            color: var(--gold);
         }
 
         .benefits {
@@ -433,8 +509,8 @@
         }
 
         .footer-logo {
-            width: 80px;
-            height: 80px;
+            width: 120px;
+            height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -488,6 +564,7 @@
 
         .footer-links ul {
             list-style: none;
+            opacity: 0.61;
         }
 
         .footer-links ul li {
@@ -535,6 +612,31 @@
             stroke-linejoin: round;
         }
 
+        .ticket-vendor {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #333;
+            margin-top: 2rem;
+        }
+
+        .ticket-vendor h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .ticket-vendor img {
+            max-width: 180px;
+            height: auto;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .ticket-vendor img:hover {
+            opacity: 1;
+        }
+
         .footer-bottom {
             border-top: 1px solid #333;
             padding-top: 2rem;
@@ -561,7 +663,11 @@
                 gap: 2rem;
             }
 
-            .two-column-grid,
+            .two-column-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
             .benefits-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -603,7 +709,7 @@
         <div class="logo-container">
             <a href="index.html" style="text-decoration: none;">
                 <div class="logo-box">
-                    <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/f_auto,q_auto/Ginger_logo_1_l0s1ql" alt="Ginger & Co. Logo">
+                    <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png" alt="Ginger & Co. Logo">
                 </div>
             </a>
             <nav>
@@ -624,11 +730,11 @@
     <section class="event-overview">
         <div class="container">
             <h2 class="section-title">Event Overview</h2>
-            <p>Afrobeats Indoor Cycling: Vienna Takeover 2025 is a first-of-its-kind indoor fitness concert merging rhythm, culture, and performance. Building on the success of the 2024 pilot at John Reed Donauzenturm, this edition expands production quality, reach, and participation through a full-day format with four cycling sessions.</p>
+            <p>Afrobeats Indoor Cycling: Vienna Takeover 2025 is a first-of-its-kind indoor fitness concert merging rhythm, culture, and performance. Building on the success of the 2024 pilot at John Reed Donauzentrum, this edition expands production quality, reach, and participation through a full-day format with four cycling sessions. </p>
             
-            <p>Transforming the Sport Arena Vienna into a high-energy, concert-style fitness mecca, the event combines live DJ sets, professional lighting, synchronized stands, and special effects to create a truly immersive atmosphere.</p>
+            <p>Transforming the Sport Arena Vienna into a high-energy, concert-style fitness arena, the event combines live DJ sets, professional lighting, synchronized visuals, and special effects to create a truly immersive atmosphere.</p>
             
-            <p>With 400 riders across four sessions and an expected total attendance of 800-1000 guests throughout the day, Afrobeats Indoor Cycling: Vienna "Takeover 2025 stands as Austria's largest indoor group-fitness cycling experience — a one-of-a-kind celebration of music, movement, and culture.</p>
+            <p>With 400 riders across four sessions and an expected total attendance of 800–1,000 guests throughout the day, Afrobeats Indoor Cycling: Vienna Takeover 2025 stands as Austria’s largest indoor group-fitness cycling experience — a one-of-a-kind celebration of music, movement, and culture.</p>
         </div>
     </section>
 
@@ -676,7 +782,7 @@
                         </svg>
                     </div>
                     <h3>Periods</h3>
-                    <p>4 Main Ride Periods<br>14:00, 16:00, 18:30, 20:00</p>
+                    <p>4 Main Ride Periods<br>14:00-15:00 • 15:30-16:30 <br> 17:30-18:30 • 19:00-20:00 </p>
                 </div>
                 <div class="info-card">
                     <div class="info-icon">
@@ -694,18 +800,26 @@
     <section class="two-column">
         <div class="two-column-grid">
             <div class="column">
+                <h2>Ticket Prices</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem; margin-bottom: 1.5rem;">
+                    <p>Session 1: <span class="price">€55</span></p>
+                    <p>Session 3: <span class="price">€70</span></p>
+                    <p>Session 2: <span class="price">€60</span></p>
+                    <p>Session 4: <span class="price">€70</span></p>
+                </div>
+                <p>Use the Early Bird Discount code at checkout to unlock reduced ticket prices. Early Bird tickets are limited, so be sure to secure your sport early!</p>
+            </div>
+            <div class="column">
                 <h2>Capacity</h2>
-                <p>400 riders across four sessions (100 bikes per session)</p>
-                <p>Total attendance of 800-1000 (400 riders, 400 guests, 200+ entering riders and their accompanying audience for a vibrant, high energy atmosphere)</p>
+                <p>400 riders across four sessions (100 bikes per session) and a total day-long attendance of 800-1,000 guests; Combining riders and their accompanying audience for a vibrant, high energy atmosphere</p>
             </div>
             <div class="column">
                 <h2>Program Highlights</h2>
-                <ul>
-                    <li>4 Themed Afrobeats rides led by Worldview Dre 1991 - Afrobeats Cycling Master Trainer</li>
-                    <li>Concert-grade sound, light, special effects and visuals provided by Austria's top live production houses</li>
-                </ul>
+                <p>4 themed Afrobeats rides led by Gbolahan Ore (GB) - Afrobeats Cycling Master Trainer</p>
+                <p style="margin-top: 1rem;">Concert-grade sound, light, special effects and visuals provided by Austria's top production houses</p>
             </div>
         </div>
+        <p class="gold-notice">All riders must be seated 20 minutes before the start of their session for instructions and mild entertainment.</p>
     </section>
 
     <section class="gallery">
@@ -722,21 +836,21 @@
                     <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/f_auto,q_auto/Events_Page_image_1_aq9xzu" alt="Event Gallery 3">
                 </div>
             </div>
-            <div class="video-section">
+            <div class="video-section" id="eventVideoBtn">
                 <div class="play-button"></div>
             </div>
         </div>
     </section>
-
+  <!--
     <section class="benefits">
         <div class="benefits-grid">
             <div class="benefit-column">
                 <h2>Partnership Benefits</h2>
                 <ul class="benefit-list">
-                    <li>Presence at brand booths across stages (foyers, LED screens, and photo assets.</li>
-                    <li>Association with Vienna's trend-shaping Afro-inspired fitness and culture event.</li>
+                    <li>Prominent brand exposure across stage visuals, LED screens, and media assets..</li>
+                    <li>Association with Vienna’s most dynamic Afro-inspired fitness and culture event.</li>
                     <li>Alignment with values of community, inclusion, wellness, and cultural diversity.</li>
-                    <li>Inclusion in professional after-movie and media (audio-library) for long-term marketing use.</li>
+                    <li>Inclusion in professional after-movie and branded photo library for your marketing use.</li>
                     <li>Access to branded photo and video content for marketing use.</li>
                     <li>Opportunities for pre-event activities and direct audience engagement.</li>
                 </ul>
@@ -744,7 +858,7 @@
             <div class="benefit-column">
                 <h2>Media Partner Opportunity</h2>
                 <ul class="benefit-list">
-                    <li>Exclusive content access, behind-the-scenes, interview, etc (day-of-release)</li>
+                    <li>Exclusive content access: behind-the-scenes, interviews, and day-of takeovers.</li>
                     <li>Pre-event teaser pieces and post-event highlight film.</li>
                     <li>On-site logo placement and presenter branding.</li>
                 </ul>
@@ -756,6 +870,7 @@
         </div>
     </section>
 
+    <!--Event Partners, for later
     <section class="partners">
         <div class="container">
             <h2>Event Partners</h2>
@@ -768,13 +883,14 @@
             </div>
         </div>
     </section>
+    -->
 
     <footer>
         <div class="footer-container">
             <div>
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/f_auto,q_auto/Ginger_logo_1_l0s1ql" alt="Ginger & Co. Logo">
+                        <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png" alt="Ginger & Co. Logo">
                     </div>
                     <h3 class="footer-company-name">Ginger &<br>Co.</h3>
                 </div>
@@ -827,10 +943,101 @@
                 </div>
             </div>
         </div>
+        <div class="ticket-vendor">
+            <h4>Our Ticket Vendor</h4>
+            <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761944771/Wien_Ticket_No_BG_epmtyy.png" alt="Our Ticket Vendor">
+        </div>
         <div class="footer-bottom">
             <p>© 2025 All rights reserved to Ginger & Co</p>
             <p>For events or sponsorship inquiries contact: <a href="mailto:events@gingerandco.at" style="color: var(--gold);">events@gingerandco.at</a></p>
         </div>
     </footer>
+
+    <!-- Video Modal -->
+    <div id="eventVideoModal" class="video-modal">
+        <div class="video-modal-content">
+            <span class="video-modal-close" id="closeEventModal">&times;</span>
+            <video id="eventModalVideo" controls>
+                <source src="https://res.cloudinary.com/dxhfgtzte/video/upload/v1761814536/Video_3_tojf2k.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <!-- Eventbrite Widget -->
+    <!-- Noscript content for added SEO -->
+    <noscript><a href="https://www.eventbrite.com/e/afrobeats-indoor-cycling-event-vienna-takeover-2025-tickets-1915105675629" rel="noopener noreferrer" target="_blank">Buy Tickets on Eventbrite</a></noscript>
+
+    <!-- Hidden button that triggers Eventbrite widget -->
+    <button id="eventbrite-widget-modal-trigger-1915105675629" type="button" style="display: none;">Buy Tickets</button>
+
+    <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
+
+    <script>
+        // Eventbrite Widget Setup
+        var exampleCallback = function() {
+            console.log('Order complete!');
+        };
+
+        window.EBWidgets.createWidget({
+            widgetType: 'checkout',
+            eventId: '1915105675629',
+            promoCode: 'Ginger2025',
+            modal: true,
+            modalTriggerElementId: 'eventbrite-widget-modal-trigger-1915105675629',
+            onOrderComplete: exampleCallback
+        });
+
+        // Make all "Get Tickets" and "Reserve" buttons trigger Eventbrite modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const eventbriteButton = document.getElementById('eventbrite-widget-modal-trigger-1915105675629');
+            const ticketButtons = document.querySelectorAll('.btn-primary[href="#tickets"], .btn-gold[href="#reserve"]');
+
+            ticketButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    eventbriteButton.click();
+                });
+            });
+        });
+
+        // Video Modal functionality for events page
+        const eventVideoBtn = document.getElementById('eventVideoBtn');
+        const eventVideoModal = document.getElementById('eventVideoModal');
+        const closeEventModal = document.getElementById('closeEventModal');
+        const eventModalVideo = document.getElementById('eventModalVideo');
+
+        // Open modal when video section is clicked
+        eventVideoBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            eventVideoModal.classList.add('active');
+            eventModalVideo.play();
+        });
+
+        // Close modal when X is clicked
+        closeEventModal.addEventListener('click', function() {
+            eventVideoModal.classList.remove('active');
+            eventModalVideo.pause();
+            eventModalVideo.currentTime = 0;
+        });
+
+        // Close modal when clicking outside the video
+        eventVideoModal.addEventListener('click', function(e) {
+            if (e.target === eventVideoModal) {
+                eventVideoModal.classList.remove('active');
+                eventModalVideo.pause();
+                eventModalVideo.currentTime = 0;
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && eventVideoModal.classList.contains('active')) {
+                eventVideoModal.classList.remove('active');
+                eventModalVideo.pause();
+                eventModalVideo.currentTime = 0;
+            }
+        });
+    </script>
 </body>
 </html>
