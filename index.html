@@ -424,6 +424,86 @@
             font-weight: 500 !important;
         }
 
+        .play-button-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--dark);
+            z-index: 2;
+            transition: all 0.3s;
+            padding-left: 8px;
+        }
+
+        .video-testimonial:hover .play-button-overlay {
+            background: var(--gold);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* Video Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            overflow: auto;
+        }
+
+        .video-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .video-modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            width: auto;
+            position: relative;
+        }
+
+        .video-modal-content video {
+            width: 100%;
+            height: auto;
+            max-height: 85vh;
+            border-radius: 8px;
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            z-index: 2001;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal-close:hover {
+            color: var(--gold);
+        }
+
         .video-thumbnail {
             width: 100%;
             height: 100%;
@@ -990,10 +1070,22 @@
             .pre-reg-content {
                 padding: 2rem 1.5rem;
                 margin: 1rem auto;
+                max-height: 95vh;
+                overflow-y: auto;
             }
 
             .session-checkboxes {
                 grid-template-columns: 1fr;
+            }
+
+            .details-content.active {
+                max-height: 600px;
+                overflow-y: auto;
+            }
+
+            .details-content p {
+                font-size: 0.8rem;
+                line-height: 1.6;
             }
         }
 
@@ -1092,47 +1184,6 @@
             color: #999;
         }
 
-        /* Desktop Footer Enhancements */
-        @media (min-width: 769px) {
-            footer {
-                padding: 4rem 5% 2.5rem;
-            }
-
-            .footer-container {
-                grid-template-columns: 1.5fr 1fr 1.5fr;
-                gap: 4rem;
-                margin-bottom: 3rem;
-            }
-
-            .social-links {
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 1.5rem;
-                justify-content: flex-start;
-            }
-
-            .social-link {
-                flex-direction: column;
-                text-align: center;
-                gap: 0.5rem;
-                font-size: 0.85rem;
-            }
-
-            .social-icon {
-                width: 26px;
-                height: 26px;
-            }
-
-            .footer-links {
-                padding-top: 0.5rem;
-            }
-
-            .footer-bottom {
-                padding-top: 2.5rem;
-                margin-top: 0.5rem;
-            }
-        }
-
         @media (max-width: 1200px) {
             .footer-company-name {
                 font-size: 96px !important;
@@ -1226,7 +1277,7 @@
     <section class="about">
         <div class="about-container">
             <div class="about-image">
-                <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1762030913/about_us_new_tiovod.png" alt="Cycling Studio">
+                <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1762030913/about_us_new_tiovod.png" alt="Cycling Studio" loading="lazy">
                 <div class="studio-info">
                     <div class="studio-title">GINGER & CO. STUDIO <span class="coming-soon">— COMING SOON</span></div>
                     <p class="studio-description">Our flagship Afro-modern boutique fitness & wellness studio in 1220 Vienna</p>
@@ -1297,29 +1348,28 @@
                     <div class="stars">★★★★★</div>
                     <p>"Loved being there today, it’s always such a good time! Thanks for making my morning start off in a special way."</p>
                 </div>
-                <div class="video-testimonial">
+                <div class="video-testimonial" id="videoTestimonial">
                     <h4>Video Testimonial</h4>
-                    <video controls style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    <video style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" preload="none">
                         <source src="https://res.cloudinary.com/dxhfgtzte/video/upload/v1761804502/WhatsApp_Video_2025-10-26_at_1.13.48_PM_xaldy8.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
                     </video>
+                    <div class="play-button-overlay">▶</div>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <div class="footer-hashtag" style="display: inline-block;">#NOPAINOGINGER</div>
+        </div>
         <div class="footer-container">
             <div>
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png" alt="Ginger & Co. Logo">
+                        <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png" alt="Ginger & Co. Logo" loading="lazy">
                     </div>
                     <h3 class="footer-company-name">Ginger &<br>Co.</h3>
-                </div>
-                <div class="footer-contact">
-                    <div class="contact-item">info@gingerandco.at</div>
-                    <div class="footer-hashtag">#NOPAINOGINGER</div>
                 </div>
             </div>
             <div class="footer-links">
@@ -1368,7 +1418,10 @@
         </div>
         <div class="footer-bottom">
             <p>© 2025 All rights reserved to Ginger & Co</p>
-            <p>For events or sponsorship inquiries contact: <a href="mailto:events@gingerandco.at" style="color: var(--gold);">events@gingerandco.at</a></p>
+            <div>
+                <p style="margin-bottom: 0.5rem;">For events or sponsorship inquiries contact:</p>
+                <div class="contact-item">info@gingerandco.at</div>
+            </div>
         </div>
     </footer>
 
@@ -1560,6 +1613,16 @@
             <h2>Almost Ready!</h2>
             <p>The Vienna ticket link isn't live just yet — we're putting the final touches on it.</p>
             <p>Check back in a few days to secure your spot. Thanks for your patience and excitement!</p>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <button class="video-modal-close" id="closeVideoModal">&times;</button>
+            <video id="modalVideo" controls>
+                <source src="" type="video/mp4">
+            </video>
         </div>
     </div>
 
@@ -1766,6 +1829,42 @@
                     }, 300);
                 }
             });
+        });
+
+        // Video Modal Handling
+        const videoModal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo');
+        const closeVideoBtn = document.getElementById('closeVideoModal');
+        const videoTestimonial = document.getElementById('videoTestimonial');
+
+        // Open video modal
+        if (videoTestimonial) {
+            videoTestimonial.addEventListener('click', function() {
+                const videoSrc = this.querySelector('source').src;
+                modalVideo.querySelector('source').src = videoSrc;
+                modalVideo.load();
+                videoModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                modalVideo.play();
+            });
+        }
+
+        // Close video modal
+        closeVideoBtn.addEventListener('click', function() {
+            videoModal.classList.remove('active');
+            document.body.style.overflow = '';
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+        });
+
+        // Close video modal when clicking outside
+        videoModal.addEventListener('click', function(e) {
+            if (e.target === videoModal) {
+                videoModal.classList.remove('active');
+                document.body.style.overflow = '';
+                modalVideo.pause();
+                modalVideo.currentTime = 0;
+            }
         });
 
     </script>
