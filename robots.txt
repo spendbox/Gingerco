@@ -1,0 +1,8 @@
+# robots.txt for gingerandco.at
+
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+# Sitemap location
+Sitemap: https://gingerandco.at/sitemap.xml
