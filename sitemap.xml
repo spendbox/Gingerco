@@ -4,7 +4,7 @@
 
     <!-- Homepage -->
     <url>
-        <loc>https://gingerandco.at/</loc>
+        <loc>https://gingerandco.at/home</loc>
         <lastmod>2025-11-02</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
@@ -16,7 +16,7 @@
 
     <!-- Events Page -->
     <url>
-        <loc>https://gingerandco.at/events.html</loc>
+        <loc>https://gingerandco.at/events</loc>
         <lastmod>2025-11-02</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
