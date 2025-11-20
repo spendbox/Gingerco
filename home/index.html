@@ -17,7 +17,7 @@
     <meta property="og:url" content="https://gingerandco.at/home">
     <meta property="og:title" content="Ginger & Co. - Afrobeats Fitness and Lifestyle">
     <meta property="og:description" content="Join Ginger & Co. for high-energy Afrobeats fitness events in Vienna. Experience indoor cycling, community workouts, and lifestyle events that blend fitness with culture.">
-    <meta property="og:image" content="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png">
+    <meta property="og:image" content="https://res.cloudinary.com/dslj7k6lx/image/upload/v1763663531/Ginger_logo_1_act33r.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="1200">
     <meta property="og:image:alt" content="Ginger & Co. Logo">
@@ -29,7 +29,7 @@
     <meta name="twitter:url" content="https://gingerandco.at/home">
     <meta name="twitter:title" content="Ginger & Co. - Afrobeats Fitness and Lifestyle">
     <meta name="twitter:description" content="Join Ginger & Co. for high-energy Afrobeats fitness events in Vienna. Experience indoor cycling, community workouts, and lifestyle events that blend fitness with culture.">
-    <meta name="twitter:image" content="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dslj7k6lx/image/upload/v1763663531/Ginger_logo_1_act33r.png">
     <meta name="twitter:image:alt" content="Ginger & Co. Logo">
 
     <!-- Geo Tags -->
@@ -38,7 +38,7 @@
     <meta name="geo.position" content="48.2082;16.3738">
     <meta name="ICBM" content="48.2082, 16.3738">
 
-    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dslj7k6lx/image/upload/v1763663531/Ginger_logo_1_act33r.png">
 
     <!-- Schema.org Organization markup for SEO and logo visibility in search results -->
     <script type="application/ld+json">
@@ -50,12 +50,12 @@
       "url": "https://gingerandco.at",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png",
+        "url": "https://res.cloudinary.com/dslj7k6lx/image/upload/v1763663531/Ginger_logo_1_act33r.png",
         "width": 1200,
         "height": 1200,
         "caption": "Ginger & Co. Logo"
       },
-      "image": "https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png",
+      "image": "https://res.cloudinary.com/dslj7k6lx/image/upload/v1763663531/Ginger_logo_1_act33r.png",
       "description": "Afrobeats Fitness and Lifestyle - Join our energetic fitness community in Vienna for high-energy indoor cycling, dance fitness, and wellness events.",
       "address": {
         "@type": "PostalAddress",
@@ -184,7 +184,7 @@
         .hero {
             position: relative;
             height: 600px;
-            background: url('https://res.cloudinary.com/dxhfgtzte/image/upload/f_auto,q_auto/v1761820538/index_hero_f72gfe.heic');
+            background: url('https://res.cloudinary.com/dslj7k6lx/image/upload/f_auto,q_auto/v1763663563/index_hero_juild8.heic');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -202,7 +202,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(8deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 100%);
+            background: linear-gradient(8deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%);
             pointer-events: none;
             z-index: 1;
         }
@@ -470,7 +470,7 @@
         }
 
         .video-testimonial {
-            background: var(--dark) url('https://res.cloudinary.com/dxhfgtzte/image/upload/v1761816046/Testimonial_Placeholder_w4pfrs.jpg') center center / cover no-repeat;
+            background: var(--dark) url('https://res.cloudinary.com/dslj7k6lx/image/upload/v1763663552/Testimonial_Placeholder_lgktu5.jpg') center center / cover no-repeat;
             padding: 0;
             border-radius: 8px;
             display: flex;
@@ -1429,6 +1429,54 @@
                 font-size: 1rem;
             }
         }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #1a1a1a;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #000;
+            transform: scale(1.1);
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .whatsapp-float svg {
+            width: 35px;
+            height: 35px;
+            fill: white;
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 25px;
+            }
+
+            .whatsapp-float svg {
+                width: 28px;
+                height: 28px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1436,7 +1484,7 @@
         <div class="logo-container">
             <a href="index.html" style="text-decoration: none;">
                 <div class="logo-box">
-                    <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png" alt="Ginger & Co. Logo">
+                    <img src="https://res.cloudinary.com/dslj7k6lx/image/upload/v1763663531/Ginger_logo_1_act33r.png" alt="Ginger & Co. Logo">
                 </div>
             </a>
             <nav>
@@ -1455,7 +1503,7 @@
     <section class="about">
         <div class="about-container">
             <div class="about-image">
-                <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1762030913/about_us_new_tiovod.png" alt="Cycling Studio" loading="lazy">
+                <img src="https://res.cloudinary.com/dslj7k6lx/image/upload/v1763663542/about_us_new_ycfiao.png" alt="Cycling Studio" loading="lazy">
                 <div class="studio-info">
                     <div class="studio-title">GINGER & CO. STUDIO <span class="coming-soon">— COMING SOON</span></div>
                     <p class="studio-description">Our flagship Afro-modern boutique fitness & wellness studio in 1220 Vienna</p>
@@ -1480,7 +1528,7 @@
                 <h2>AFROBEATS INDOOR CYCLING: VIENNA TAKEOVER 2025</h2>
                 <div class="event-video">
                     <video controls style="width: 100%; height: 100%; border-radius: 8px;">
-                        <source src="https://res.cloudinary.com/dxhfgtzte/video/upload/v1761804532/First_Afrobeats_Cycling_Event_Nov_2024_Video_Recap_2_ukkunk.mp4" type="video/mp4">
+                        <source src="https://res.cloudinary.com/dslj7k6lx/video/upload/v1763663951/05485bd9-a516-4749-94d5-ce40e183b94e_aswgrs.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -1529,7 +1577,7 @@
                 <div class="video-testimonial" id="videoTestimonial">
                     <h4>Video Testimonial</h4>
                     <video style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" preload="none">
-                        <source src="https://res.cloudinary.com/dxhfgtzte/video/upload/v1761804502/WhatsApp_Video_2025-10-26_at_1.13.48_PM_xaldy8.mp4" type="video/mp4">
+                        <source src="https://res.cloudinary.com/dslj7k6lx/video/upload/v1763663601/WhatsApp_Video_2025-10-26_at_1.13.48_PM_womwop.mp4" type="video/mp4">
                     </video>
                     <div class="play-button-overlay">▶</div>
                 </div>
@@ -1545,7 +1593,7 @@
             <div>
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <img src="https://res.cloudinary.com/dxhfgtzte/image/upload/v1761867723/Ginger_logo_1_wvhijd.png" alt="Ginger & Co. Logo" loading="lazy">
+                        <img src="https://res.cloudinary.com/dslj7k6lx/image/upload/v1763663531/Ginger_logo_1_act33r.png" alt="Ginger & Co. Logo" loading="lazy">
                     </div>
                     <h3 class="footer-company-name">Ginger &<br>Co.</h3>
                 </div>
@@ -2064,5 +2112,12 @@
         });
 
     </script>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/447479861446" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M27.281 4.65C24.318 1.686 20.373 0.065 16.177 0.063c-8.714 0-15.807 7.093-15.811 15.812a15.782 15.782 0 0 0 2.105 7.896L.027 31.935l8.375-2.195a15.78 15.78 0 0 0 7.559 1.926h.007c8.713 0 15.807-7.093 15.811-15.813a15.718 15.718 0 0 0-4.498-11.203zm-11.104 24.32h-.006a13.133 13.133 0 0 1-6.699-1.834l-.48-.285-4.979 1.306 1.328-4.852-.313-.498a13.096 13.096 0 0 1-2.008-6.986c.003-7.238 5.894-13.128 13.14-13.128 3.507.001 6.803 1.368 9.281 3.851a13.052 13.052 0 0 1 3.84 9.295c-.003 7.239-5.894 13.13-13.104 13.13zm7.192-9.814c-.394-.197-2.331-1.149-2.692-1.281-.36-.131-.622-.197-.884.197-.262.394-1.016 1.281-1.246 1.543-.23.262-.459.295-.853.098-.394-.197-1.665-.614-3.171-1.957-1.172-1.045-1.964-2.337-2.194-2.731-.23-.394-.024-.607.173-.803.177-.177.394-.459.591-.689.197-.23.262-.394.394-.656.131-.262.066-.492-.033-.689-.098-.197-.884-2.131-1.213-2.918-.319-.767-.644-.663-.884-.676-.229-.011-.491-.014-.753-.014s-.688.098-1.049.492c-.361.394-1.377 1.346-1.377 3.282s1.41 3.806 1.607 4.068c.197.262 2.777 4.24 6.725 5.947.94.406 1.674.649 2.246.831.945.3 1.805.257 2.486.156.758-.113 2.331-.953 2.659-1.873.328-.921.328-1.71.23-1.873-.098-.164-.361-.262-.755-.459z"/>
+        </svg>
+    </a>
 </body>
 </html>
