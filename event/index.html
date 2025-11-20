@@ -1413,6 +1413,54 @@
                 font-size: 1rem;
             }
         }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .whatsapp-float svg {
+            width: 35px;
+            height: 35px;
+            fill: white;
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 25px;
+            }
+
+            .whatsapp-float svg {
+                width: 28px;
+                height: 28px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2156,5 +2204,12 @@
         });
 
     </script>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/447479861446" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M27.281 4.65C24.318 1.686 20.373 0.065 16.177 0.063c-8.714 0-15.807 7.093-15.811 15.812a15.782 15.782 0 0 0 2.105 7.896L.027 31.935l8.375-2.195a15.78 15.78 0 0 0 7.559 1.926h.007c8.713 0 15.807-7.093 15.811-15.813a15.718 15.718 0 0 0-4.498-11.203zm-11.104 24.32h-.006a13.133 13.133 0 0 1-6.699-1.834l-.48-.285-4.979 1.306 1.328-4.852-.313-.498a13.096 13.096 0 0 1-2.008-6.986c.003-7.238 5.894-13.128 13.14-13.128 3.507.001 6.803 1.368 9.281 3.851a13.052 13.052 0 0 1 3.84 9.295c-.003 7.239-5.894 13.13-13.104 13.13zm7.192-9.814c-.394-.197-2.331-1.149-2.692-1.281-.36-.131-.622-.197-.884.197-.262.394-1.016 1.281-1.246 1.543-.23.262-.459.295-.853.098-.394-.197-1.665-.614-3.171-1.957-1.172-1.045-1.964-2.337-2.194-2.731-.23-.394-.024-.607.173-.803.177-.177.394-.459.591-.689.197-.23.262-.394.394-.656.131-.262.066-.492-.033-.689-.098-.197-.884-2.131-1.213-2.918-.319-.767-.644-.663-.884-.676-.229-.011-.491-.014-.753-.014s-.688.098-1.049.492c-.361.394-1.377 1.346-1.377 3.282s1.41 3.806 1.607 4.068c.197.262 2.777 4.24 6.725 5.947.94.406 1.674.649 2.246.831.945.3 1.805.257 2.486.156.758-.113 2.331-.953 2.659-1.873.328-.921.328-1.71.23-1.873-.098-.164-.361-.262-.755-.459z"/>
+        </svg>
+    </a>
 </body>
 </html>
