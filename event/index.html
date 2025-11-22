@@ -158,6 +158,12 @@
             background-image: radial-gradient(var(--gold) 1px, transparent 1px);
             background-size: 16px 16px;
             pointer-events: none;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.15; }
+            50% { opacity: 0.3; }
         }
 
         .promo-banner-container {
@@ -306,40 +312,6 @@
             color: #22c55e;
         }
 
-        .promo-divider {
-            height: 1.5rem;
-            width: 1px;
-            background: #27272a;
-            display: none;
-        }
-
-        .promo-close {
-            padding: 0.375rem;
-            border-radius: 9999px;
-            transition: background-color 0.2s ease;
-            cursor: pointer;
-            border: none;
-            background: transparent;
-            position: absolute;
-            right: 0.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .promo-close:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .promo-close svg {
-            width: 1rem;
-            height: 1rem;
-            color: #71717a;
-        }
-
-        .promo-close:hover svg {
-            color: white;
-        }
-
         /* Add top padding to body content */
         body > section:first-of-type,
         body > .hero {
@@ -348,7 +320,7 @@
 
         @media (min-width: 640px) {
             .promo-banner {
-                padding: 0.75rem 1rem;
+                padding: 1.5rem 1rem;
             }
 
             .promo-banner-container {
@@ -395,15 +367,6 @@
             .promo-right {
                 width: auto;
                 justify-content: flex-end;
-            }
-
-            .promo-divider {
-                display: block;
-            }
-
-            .promo-close {
-                position: static;
-                transform: none;
             }
         }
 
@@ -1793,12 +1756,6 @@
                     <code class="promo-code-value">GINGERBLACKFRIDAY</code>
                     <svg class="promo-code-icon" id="copyIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                 </button>
-
-                <div class="promo-divider"></div>
-
-                <button class="promo-close" onclick="event.stopPropagation(); closePromoBanner();" aria-label="Close banner">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                </button>
             </div>
         </div>
     </div>
@@ -1815,11 +1772,6 @@
                     icon.classList.remove('copied');
                 }, 2000);
             });
-        }
-
-        function closePromoBanner() {
-            document.getElementById('promoBanner').style.display = 'none';
-            document.querySelector('body > section:first-of-type, body > .hero').style.marginTop = '68px';
         }
     </script>
 
