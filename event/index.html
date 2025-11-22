@@ -134,94 +134,122 @@
         .promo-banner {
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             color: white;
-            padding: 1rem 0;
+            padding: 1.8rem 5% 1.5rem 5%;
             position: fixed;
             top: 68px;
             left: 0;
             right: 0;
             z-index: 99;
-            overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             border-bottom: 3px solid var(--gold);
+            animation: slideDown 0.5s ease-out;
         }
 
-        .promo-banner-scroll {
-            display: flex;
-            white-space: nowrap;
-            animation: scroll-left 30s linear infinite;
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .promo-banner-content {
-            display: inline-flex;
-            align-items: center;
-            padding: 0 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
             font-size: 1.1rem;
             font-weight: 500;
             letter-spacing: 0.02em;
+            line-height: 1.6;
         }
 
         .promo-highlight {
             font-weight: 800;
             color: var(--gold);
-            margin-right: 0.5rem;
+            font-size: 1.2rem;
+            display: inline-block;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .promo-code {
             background: var(--gold);
             color: var(--dark);
-            padding: 0.4rem 1rem;
-            border-radius: 4px;
+            padding: 0.5rem 1.2rem;
+            border-radius: 5px;
             font-weight: 800;
             font-family: 'League Spartan', sans-serif;
             letter-spacing: 0.08em;
             margin: 0 0.5rem;
             display: inline-block;
+            box-shadow: 0 3px 12px rgba(212, 175, 55, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 3px 12px rgba(212, 175, 55, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 4px 16px rgba(212, 175, 55, 0.6);
+            }
         }
 
         .promo-separator {
-            margin: 0 1rem;
+            margin: 0 0.75rem;
             color: var(--gold);
             font-weight: 600;
-        }
-
-        @keyframes scroll-left {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        /* Pause animation on hover */
-        .promo-banner:hover .promo-banner-scroll {
-            animation-play-state: paused;
+            opacity: 0.6;
         }
 
         /* Add top padding to body content to account for fixed header and banner */
         body > section:first-of-type,
         body > .hero {
-            margin-top: 125px;
+            margin-top: 155px;
         }
 
         @media (max-width: 768px) {
+            .promo-banner {
+                padding: 1.5rem 4% 1.2rem 4%;
+            }
+
             .promo-banner-content {
                 font-size: 0.95rem;
-                padding: 0 2rem;
+                line-height: 1.5;
+            }
+
+            .promo-highlight {
+                font-size: 1.05rem;
             }
 
             .promo-code {
-                padding: 0.3rem 0.8rem;
-                font-size: 0.95rem;
+                padding: 0.4rem 0.9rem;
+                font-size: 0.9rem;
+                margin: 0.25rem 0.5rem;
             }
 
             .promo-separator {
-                margin: 0 0.75rem;
+                margin: 0 0.5rem;
             }
 
             body > section:first-of-type,
             body > .hero {
-                margin-top: 115px;
+                margin-top: 140px;
             }
         }
 
@@ -1582,13 +1610,8 @@
 
     <!-- Black Friday Banner -->
     <div class="promo-banner">
-        <div class="promo-banner-scroll">
-            <div class="promo-banner-content">
-                <span class="promo-highlight">BLACK FRIDAY WEEKEND.</span> Enjoy 30% off all tickets — this weekend only. <span class="promo-separator">•</span> Use code <span class="promo-code">GINGERBLACKFRIDAY</span> at checkout and secure your bike. <span class="promo-separator">•</span> Valid: 21–24 November 2025
-            </div>
-            <div class="promo-banner-content">
-                <span class="promo-highlight">BLACK FRIDAY WEEKEND.</span> Enjoy 30% off all tickets — this weekend only. <span class="promo-separator">•</span> Use code <span class="promo-code">GINGERBLACKFRIDAY</span> at checkout and secure your bike. <span class="promo-separator">•</span> Valid: 21–24 November 2025
-            </div>
+        <div class="promo-banner-content">
+            <span class="promo-highlight">BLACK FRIDAY WEEKEND.</span> Enjoy 30% off all tickets — this weekend only. <span class="promo-separator">•</span> Use code <span class="promo-code">GINGERBLACKFRIDAY</span> at checkout and secure your bike. <span class="promo-separator">•</span> Valid: 21–24 November 2025
         </div>
     </div>
 
