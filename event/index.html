@@ -134,7 +134,7 @@
         .promo-banner {
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             color: white;
-            padding: 1.2rem 5%;
+            padding: 1.5rem 5% 1.2rem 5%;
             position: fixed;
             top: 68px;
             left: 0;
@@ -151,16 +151,17 @@
             align-items: center;
             justify-content: center;
             gap: 3rem;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
         }
 
         .promo-message {
             position: relative;
             height: 2rem;
-            min-width: 450px;
+            min-width: 350px;
             overflow: hidden;
             display: flex;
             align-items: center;
+            flex: 1;
         }
 
         .promo-text {
@@ -197,6 +198,7 @@
             align-items: center;
             gap: 0.75rem;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .promo-code-label {
@@ -225,7 +227,7 @@
         /* Add top padding to body content to account for fixed header and banner */
         body > section:first-of-type,
         body > .hero {
-            margin-top: 145px;
+            margin-top: 150px;
         }
 
         .logo-container {
@@ -992,50 +994,54 @@
 
             /* Promo Banner Mobile */
             .promo-banner {
-                padding: 1rem 3%;
+                padding: 1.2rem 3% 1rem 3%;
                 top: 60px;
             }
 
             .promo-banner-content {
-                gap: 1.25rem;
+                gap: 1rem;
                 flex-wrap: wrap;
                 justify-content: center;
+                flex-direction: column;
             }
 
             .promo-message {
-                min-width: 250px;
-                height: 1.6rem;
-                flex: 1;
+                min-width: 100%;
+                height: 1.8rem;
+                flex: none;
+                text-align: center;
             }
 
             .promo-text {
-                font-size: 0.95rem;
-            }
-
-            .promo-text:nth-child(1) {
                 font-size: 1rem;
             }
 
+            .promo-text:nth-child(1) {
+                font-size: 1.05rem;
+            }
+
             .promo-text:nth-child(4) {
-                font-size: 0.85rem;
+                font-size: 0.9rem;
             }
 
             .promo-code-section {
                 gap: 0.5rem;
+                justify-content: center;
+                width: 100%;
             }
 
             .promo-code-label {
-                font-size: 0.9rem;
+                font-size: 0.95rem;
             }
 
             .promo-code-highlight {
-                padding: 0.5rem 1rem;
-                font-size: 0.95rem;
+                padding: 0.6rem 1.2rem;
+                font-size: 1rem;
             }
 
             body > section:first-of-type,
             body > .hero {
-                margin-top: 125px;
+                margin-top: 135px;
             }
         }
 
@@ -1635,7 +1641,7 @@
     <div class="promo-banner">
         <div class="promo-banner-content">
             <div class="promo-message">
-                <div class="promo-text">🎉 BLACK FRIDAY WEEKEND</div>
+                <div class="promo-text">BLACK FRIDAY WEEKEND</div>
                 <div class="promo-text">Enjoy 30% off all tickets</div>
                 <div class="promo-text">This weekend only</div>
                 <div class="promo-text">Valid: 21–24 November 2025</div>
