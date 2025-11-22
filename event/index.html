@@ -134,7 +134,7 @@
         .promo-banner {
             background: #000;
             color: white;
-            padding: 1.5rem 1rem;
+            padding: 2rem 1rem;
             position: fixed;
             top: 68px;
             left: 0;
@@ -232,6 +232,8 @@
 
         .promo-discount {
             color: white;
+            display: block;
+            margin-top: 0.25rem;
         }
 
         .promo-sub-text {
@@ -370,6 +372,11 @@
 
             .promo-separator-text {
                 display: inline;
+            }
+
+            .promo-discount {
+                display: inline;
+                margin-top: 0;
             }
 
             .promo-sub-text {
@@ -1756,7 +1763,7 @@
     </header>
 
     <!-- Black Friday Banner -->
-    <div class="promo-banner" id="promoBanner" onclick="openPreRegModal()">
+    <div class="promo-banner" id="promoBanner" onclick="document.getElementById('preRegistrationModal').classList.add('active'); document.body.style.overflow = 'hidden';">
         <div class="promo-banner-container">
             <!-- Left: Promo Info -->
             <div class="promo-left">
@@ -1813,10 +1820,6 @@
         function closePromoBanner() {
             document.getElementById('promoBanner').style.display = 'none';
             document.querySelector('body > section:first-of-type, body > .hero').style.marginTop = '68px';
-        }
-
-        function openPreRegModal() {
-            document.getElementById('preRegistrationModal').style.display = 'flex';
         }
     </script>
 
