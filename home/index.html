@@ -133,124 +133,271 @@
 
         /* Black Friday Banner */
         .promo-banner {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: #000;
             color: white;
-            padding: 1.8rem 5% 1.5rem 5%;
+            padding: 0.75rem 1rem;
             position: fixed;
             top: 68px;
             left: 0;
             right: 0;
             z-index: 99;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            border-bottom: 3px solid var(--gold);
-            animation: slideDown 0.5s ease-out;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: border-color 0.3s ease;
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .promo-banner:hover {
+            border-bottom-color: rgba(212, 175, 55, 0.3);
         }
 
-        .promo-banner-content {
+        .promo-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0.2;
+            background-image: radial-gradient(var(--gold) 1px, transparent 1px);
+            background-size: 16px 16px;
+            pointer-events: none;
+        }
+
+        .promo-banner-container {
             max-width: 1400px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .promo-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             text-align: center;
-            font-size: 1.1rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            line-height: 1.6;
+            width: 100%;
+            justify-content: center;
         }
 
-        .promo-highlight {
-            font-weight: 800;
+        .promo-icon {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 0.5rem;
+            background: rgba(212, 175, 55, 0.2);
             color: var(--gold);
-            font-size: 1.2rem;
-            display: inline-block;
-            animation: fadeIn 0.8s ease-out 0.3s both;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .promo-code {
-            background: var(--gold);
-            color: var(--dark);
-            padding: 0.5rem 1.2rem;
-            border-radius: 5px;
-            font-weight: 800;
-            font-family: 'League Spartan', sans-serif;
-            letter-spacing: 0.08em;
-            margin: 0 0.5rem;
-            display: inline-block;
-            box-shadow: 0 3px 12px rgba(212, 175, 55, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            flex-shrink: 0;
             animation: pulse 2s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 3px 12px rgba(212, 175, 55, 0.4);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 4px 16px rgba(212, 175, 55, 0.6);
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
-        .promo-separator {
-            margin: 0 0.75rem;
+        .promo-icon svg {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .promo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .promo-main-text {
+            font-weight: bold;
+            font-size: 0.875rem;
+            line-height: 1.25;
+            letter-spacing: 0.025em;
+        }
+
+        .promo-title {
             color: var(--gold);
-            font-weight: 600;
-            opacity: 0.6;
+            text-transform: uppercase;
+            margin-right: 0.5rem;
         }
 
-        /* Add top padding to body content to account for fixed header and banner */
+        .promo-separator-text {
+            color: #71717a;
+            font-weight: normal;
+            display: none;
+            margin: 0 0.25rem;
+        }
+
+        .promo-discount {
+            color: white;
+        }
+
+        .promo-sub-text {
+            font-size: 0.625rem;
+            color: #a1a1aa;
+        }
+
+        .promo-sub-text-desktop {
+            display: none;
+        }
+
+        .promo-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .promo-code-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #18181b;
+            border: 1px solid #27272a;
+            border-radius: 0.375rem;
+            padding: 0.375rem 0.75rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .promo-code-button:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        .promo-code-button:active {
+            transform: scale(0.95);
+            background: #09090b;
+        }
+
+        .promo-code-label {
+            font-size: 0.625rem;
+            text-transform: uppercase;
+            color: #71717a;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .promo-code-value {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: white;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+        }
+
+        .promo-code-icon {
+            width: 0.75rem;
+            height: 0.75rem;
+            color: #52525b;
+            transition: color 0.2s ease;
+        }
+
+        .promo-code-button:hover .promo-code-icon {
+            color: white;
+        }
+
+        .promo-code-icon.copied {
+            color: #22c55e;
+        }
+
+        .promo-divider {
+            height: 1.5rem;
+            width: 1px;
+            background: #27272a;
+            display: none;
+        }
+
+        .promo-close {
+            padding: 0.375rem;
+            border-radius: 9999px;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .promo-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .promo-close svg {
+            width: 1rem;
+            height: 1rem;
+            color: #71717a;
+        }
+
+        .promo-close:hover svg {
+            color: white;
+        }
+
+        /* Add top padding to body content */
         body > section:first-of-type,
         body > .hero {
-            margin-top: 155px;
+            margin-top: 125px;
         }
 
-        @media (max-width: 768px) {
+        @media (min-width: 640px) {
             .promo-banner {
-                padding: 1.5rem 4% 1.2rem 4%;
+                padding: 0.75rem 1rem;
             }
 
-            .promo-banner-content {
-                font-size: 0.95rem;
-                line-height: 1.5;
+            .promo-banner-container {
+                flex-direction: row;
+                gap: 2rem;
             }
 
-            .promo-highlight {
-                font-size: 1.05rem;
+            .promo-left {
+                text-align: left;
+                width: auto;
+                justify-content: flex-start;
             }
 
-            .promo-code {
-                padding: 0.4rem 0.9rem;
-                font-size: 0.9rem;
-                margin: 0.25rem 0.5rem;
+            .promo-icon {
+                display: flex;
             }
 
-            .promo-separator {
-                margin: 0 0.5rem;
+            .promo-text-wrapper {
+                display: block;
             }
 
-            body > section:first-of-type,
-            body > .hero {
-                margin-top: 140px;
+            .promo-separator-text {
+                display: inline;
+            }
+
+            .promo-sub-text {
+                font-size: 0.75rem;
+                margin-top: 0.125rem;
+            }
+
+            .promo-sub-text-mobile {
+                display: none;
+            }
+
+            .promo-sub-text-desktop {
+                display: inline;
+            }
+
+            .promo-right {
+                width: auto;
+                justify-content: flex-end;
+            }
+
+            .promo-divider {
+                display: block;
+            }
+
+            .promo-close {
+                position: static;
+                transform: none;
             }
         }
 
@@ -1625,11 +1772,69 @@
     </header>
 
     <!-- Black Friday Banner -->
-    <div class="promo-banner">
-        <div class="promo-banner-content">
-            <span class="promo-highlight">BLACK FRIDAY WEEKEND.</span> Enjoy 30% off all tickets — this weekend only. <span class="promo-separator">•</span> Use code <span class="promo-code">GINGERBLACKFRIDAY</span> at checkout and secure your bike. <span class="promo-separator">•</span> Valid: 21–24 November 2025
+    <div class="promo-banner" id="promoBanner" onclick="openPreRegModal()">
+        <div class="promo-banner-container">
+            <!-- Left: Promo Info -->
+            <div class="promo-left">
+                <!-- Icon with pulse animation -->
+                <div class="promo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                </div>
+
+                <div class="promo-text-wrapper">
+                    <p class="promo-main-text">
+                        <span class="promo-title">BLACK FRIDAY WEEKEND</span>
+                        <span class="promo-separator-text">|</span>
+                        <span class="promo-discount">Enjoy 30% off all tickets</span>
+                    </p>
+                    <p class="promo-sub-text">
+                        <span class="promo-sub-text-desktop">Valid 21–24 November 2025 • This weekend only</span>
+                        <span class="promo-sub-text-mobile">This weekend only</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right: Actions -->
+            <div class="promo-right">
+                <!-- Copy Code Button -->
+                <button class="promo-code-button" onclick="event.stopPropagation(); copyPromoCode();" title="Click to copy code">
+                    <span class="promo-code-label">Code:</span>
+                    <code class="promo-code-value">GINGERBLACKFRIDAY</code>
+                    <svg class="promo-code-icon" id="copyIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+
+                <div class="promo-divider"></div>
+
+                <button class="promo-close" onclick="event.stopPropagation(); closePromoBanner();" aria-label="Close banner">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
         </div>
     </div>
+
+    <script>
+        function copyPromoCode() {
+            const code = 'GINGERBLACKFRIDAY';
+            navigator.clipboard.writeText(code).then(() => {
+                const icon = document.getElementById('copyIcon');
+                icon.innerHTML = '<polyline points="20 6 9 17 4 12"></polyline>';
+                icon.classList.add('copied');
+                setTimeout(() => {
+                    icon.innerHTML = '<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>';
+                    icon.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function closePromoBanner() {
+            document.getElementById('promoBanner').style.display = 'none';
+            document.querySelector('body > section:first-of-type, body > .hero').style.marginTop = '68px';
+        }
+
+        function openPreRegModal() {
+            document.getElementById('preRegistrationModal').style.display = 'flex';
+        }
+    </script>
 
     <section class="hero">
         <div class="hero-content">
