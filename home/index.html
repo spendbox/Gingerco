@@ -124,6 +124,65 @@
             z-index: 100;
         }
 
+        /* Black Friday Banner */
+        .promo-banner {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 5%;
+            position: sticky;
+            top: 68px;
+            z-index: 99;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .promo-banner-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .promo-title {
+            font-family: 'League Spartan', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .promo-subtitle {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            color: #fff;
+        }
+
+        .promo-code {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            color: #e0e0e0;
+        }
+
+        .promo-code-highlight {
+            background: var(--gold);
+            color: var(--dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-family: 'League Spartan', sans-serif;
+            letter-spacing: 0.05em;
+            margin: 0 0.25rem;
+        }
+
+        .promo-validity {
+            font-size: 0.85rem;
+            color: #b0b0b0;
+            font-weight: 400;
+            margin-top: 0.25rem;
+        }
+
         .logo-container {
             display: flex;
             align-items: center;
@@ -1340,6 +1399,37 @@
                 padding-left: 4%;
                 padding-right: 4%;
             }
+
+            /* Promo Banner Mobile */
+            .promo-banner {
+                padding: 1rem 3%;
+                top: 60px;
+            }
+
+            .promo-title {
+                font-size: 1.3rem;
+                letter-spacing: 0.08em;
+                margin-bottom: 0.4rem;
+            }
+
+            .promo-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .promo-code {
+                font-size: 0.85rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .promo-code-highlight {
+                padding: 0.2rem 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            .promo-validity {
+                font-size: 0.75rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1493,6 +1583,16 @@
         </div>
         <a href="#tickets" class="btn-primary">Get Tickets</a>
     </header>
+
+    <!-- Black Friday Banner -->
+    <div class="promo-banner">
+        <div class="promo-banner-content">
+            <div class="promo-title">BLACK FRIDAY WEEKEND</div>
+            <div class="promo-subtitle">Enjoy 30% off all tickets — this weekend only.</div>
+            <div class="promo-code">Use code <span class="promo-code-highlight">GINGERBLACKFRIDAY</span> at checkout and secure your bike.</div>
+            <div class="promo-validity">Valid: 21–24 November 2025</div>
+        </div>
+    </div>
 
     <section class="hero">
         <div class="hero-content">
