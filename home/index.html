@@ -75,7 +75,7 @@
         "availableLanguage": ["en", "de"]
       },
       "foundingDate": "2024",
-      "slogan": "#NOPAINOGINGER"
+      "slogan": "#NOPAINNOGINGER"
     }
     </script>
 
@@ -1741,32 +1741,29 @@
         <a href="#tickets" class="btn-primary">Get Tickets</a>
     </header>
 
-    <!-- Black Friday Banner - HIDDEN FOR NOW -->
-    <!--
+    <!-- Black Friday Discount Banner -->
     <div class="promo-banner" id="promoBanner" onclick="document.getElementById('preRegistrationModal').classList.add('active'); document.body.style.overflow = 'hidden';">
         <div class="promo-banner-container">
+            <!-- Left: Promo Info -->
             <div class="promo-left">
+                <!-- Icon with pulse animation -->
                 <div class="promo-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
                 </div>
 
                 <div class="promo-text-wrapper">
                     <p class="promo-main-text">
-                        <span class="promo-title">BLACK FRIDAY WEEKEND</span>
-                        <span class="promo-separator-text">|</span>
-                        <span class="promo-discount">Enjoy 30% off all tickets</span>
-                    </p>
-                    <p class="promo-sub-text">
-                        <span class="promo-sub-text-desktop">Valid 21–24 November 2025 • This weekend only</span>
-                        <span class="promo-sub-text-mobile">Valid 21-24 November 2025</span>
+                        <span class="promo-discount">Apply 'Ginger30' to enjoy a 30% black friday discount on all sessions</span>
                     </p>
                 </div>
             </div>
 
+            <!-- Right: Actions -->
             <div class="promo-right">
+                <!-- Copy Code Button -->
                 <button class="promo-code-button" onclick="event.stopPropagation(); copyPromoCode();" title="Click to copy code">
                     <span class="promo-code-label">Code:</span>
-                    <code class="promo-code-value">GINGERBLACKFRIDAY</code>
+                    <code class="promo-code-value">Ginger30</code>
                     <svg class="promo-code-icon" id="copyIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                 </button>
             </div>
@@ -1775,7 +1772,7 @@
 
     <script>
         function copyPromoCode() {
-            const code = 'GINGERBLACKFRIDAY';
+            const code = 'Ginger30';
             navigator.clipboard.writeText(code).then(() => {
                 const icon = document.getElementById('copyIcon');
                 icon.innerHTML = '<polyline points="20 6 9 17 4 12"></polyline>';
@@ -1787,7 +1784,6 @@
             });
         }
     </script>
-    -->
 
     <section class="hero">
         <div class="hero-content">
@@ -1882,7 +1878,7 @@
 
     <footer>
         <div style="text-align: center; margin-bottom: 2rem; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0 5%;">
-            <div class="footer-hashtag" style="display: inline-block;">#NOPAINOGINGER</div>
+            <div class="footer-hashtag" style="display: inline-block;">#NOPAINNOGINGER</div>
         </div>
         <div class="footer-container">
             <div>
