@@ -1784,7 +1784,7 @@
             
             <p>Transforming the Sport Arena Vienna into a high-energy, concert-style fitness arena, the event combines live DJ sets, professional lighting, synchronized visuals, and special effects to create a truly immersive atmosphere.</p>
             
-            <p>With 400 riders across four sessions and an expected total attendance of 800–1,000 guests throughout the day, Afrobeats Indoor Cycling: Vienna Takeover 2025 stands as Austria’s largest indoor group-fitness cycling experience — a one-of-a-kind celebration of music, movement, and culture.</p>
+            <p>With 300 riders across four sessions and an expected total attendance of 800–1,000 guests throughout the day, Afrobeats Indoor Cycling: Vienna Takeover 2025 stands as Austria's largest indoor group-fitness cycling experience — a one-of-a-kind celebration of music, movement, and culture.</p>
         </div>
     </section>
 
@@ -1832,7 +1832,7 @@
                         </svg>
                     </div>
                     <h3>Periods</h3>
-                    <p>4 Main Ride Periods<br>14:00-15:00 • 15:30-16:30 <br> 17:30-18:30 • 19:00-20:00 </p>
+                    <p>4 Main Periods<br>14:00-15:00 • 15:30-16:30<br>17:30-18:30 (Afrobeats Dance Workshop with Kafeela Ade) • 19:00-20:00</p>
                 </div>
                 <div class="info-card">
                     <div class="info-icon">
@@ -1853,17 +1853,18 @@
                 <h2>Ticket Prices</h2>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem; margin-bottom: 1.5rem;">
                     <p>Session 1: <span class="price">€55</span></p>
-                    <p>Session 3: <span class="price">€70</span></p>
+                    <p>Session 3: <span class="price">FREE*</span></p>
                     <p>Session 2: <span class="price">€60</span></p>
                     <p>Session 4: <span class="price">€70</span></p>
                 </div>
-                <p>Have a discount code? Apply it at checkout.</p>
+                <p style="margin-bottom: 0.5rem;">*Session 3 (Afrobeats Dance Workshop with Kafeela Ade) is FREE - registration is compulsory to secure a spot. Suitable for ages 6 and above.</p>
+                <p>Have a discount code? Apply it at checkout for Sessions 1, 2, and 4.</p>
                 <!-- HIDDEN FOR NOW: Early Bird pricing text -->
                 <!-- <p>Get your tickets at a reduced Early Bird price! Early Bird spots are limited for each session, and it's first come, first served — so be quick to lock in your spot!</p> -->
             </div>
             <div class="column">
                 <h2>Capacity</h2>
-                <p>400 riders across four sessions (100 bikes per session) and a total day-long attendance of 800-1,000 guests; Combining riders and their accompanying audience for a vibrant, high energy atmosphere</p>
+                <p>300 riders across four sessions (100 bikes per session for Sessions 1, 2, 4; dance workshop for Session 3) and a total day-long attendance of 800-1,000 guests; Combining riders and their accompanying audience for a vibrant, high energy atmosphere</p>
             </div>
             <div class="column">
                 <h2>Program Highlights</h2>
@@ -2078,22 +2079,24 @@
                     <label>Sessions (select one or more)</label>
                     <div class="session-checkboxes">
                         <div class="checkbox-item">
-                            <input type="checkbox" id="session1" name="sessions" value="14:00-15:00">
-                            <label for="session1">14:00-15:00</label>
+                            <input type="checkbox" id="session1" name="sessions" value="Session 1: 14:00-15:00" data-session-type="cycling">
+                            <label for="session1">Session 1: 14:00-15:00 (Cycling)</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" id="session2" name="sessions" value="15:30-16:30">
-                            <label for="session2">15:30-16:30</label>
+                            <input type="checkbox" id="session2" name="sessions" value="Session 2: 15:30-16:30" data-session-type="cycling">
+                            <label for="session2">Session 2: 15:30-16:30 (Cycling)</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" id="session3" name="sessions" value="17:30-18:30">
-                            <label for="session3">17:30-18:30</label>
+                            <input type="checkbox" id="session3" name="sessions" value="Session 3: 17:30-18:30 - Afrobeats Dance Workshop" data-session-type="dance">
+                            <label for="session3">Session 3: 17:30-18:30 - Afrobeats Dance Workshop (FREE*)</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" id="session4" name="sessions" value="19:00-20:00">
-                            <label for="session4">19:00-20:00</label>
+                            <input type="checkbox" id="session4" name="sessions" value="Session 4: 19:00-20:00" data-session-type="cycling">
+                            <label for="session4">Session 4: 19:00-20:00 (Cycling)</label>
                         </div>
                     </div>
+                    <p style="font-size: 0.9em; color: #888; margin-top: 0.5rem;">*Session 3 is FREE but registration is required. Suitable for ages 6+. Note: Session 3 cannot be combined with other sessions.</p>
+                    <div id="sessionError" style="display: none; color: #dc3545; font-size: 0.9em; margin-top: 0.5rem; padding: 0.5rem; background: rgba(220, 53, 69, 0.1); border-radius: 4px;"></div>
                 </div>
 
                 <!-- Guest(s) -->
@@ -2251,6 +2254,18 @@
         </div>
     </div>
 
+    <!-- Thank You Modal for Session 3 -->
+    <div id="thankYouModal" class="coming-soon-modal">
+        <div class="coming-soon-content">
+            <button class="coming-soon-close" id="closeThankYouModal">&times;</button>
+            <div class="coming-soon-emoji">🎉 💃</div>
+            <h2>Thank You for Your Registration!</h2>
+            <p>You're all set for Session 3: Afrobeats Dance Workshop with Kafeela Ade.</p>
+            <p>Check your email for confirmation details and event information.</p>
+            <p style="margin-top: 1.5rem; font-size: 0.9em; color: #888;">See you on the dance floor! 🔥</p>
+        </div>
+    </div>
+
     <script>
         // Pre-Registration Modal & Form Handling
         document.addEventListener('DOMContentLoaded', function() {
@@ -2264,6 +2279,8 @@
             const comingSoonModal = document.getElementById('comingSoonModal');
             const closeComingSoonBtn = document.getElementById('closeComingSoonModal');
             const ticketLoadingOverlay = document.getElementById('ticketLoadingOverlay');
+            const thankYouModal = document.getElementById('thankYouModal');
+            const closeThankYouBtn = document.getElementById('closeThankYouModal');
             const ticketButtons = document.querySelectorAll('.btn-primary[href="#tickets"]');
             const reserveButtons = document.querySelectorAll('.btn-gold[href="#reserve"]');
 
@@ -2313,10 +2330,69 @@
                 }
             });
 
+            // Close thank you modal
+            closeThankYouBtn.addEventListener('click', function() {
+                thankYouModal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // Close thank you modal when clicking outside
+            thankYouModal.addEventListener('click', function(e) {
+                if (e.target === thankYouModal) {
+                    thankYouModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
             // Toggle consent details
             detailsToggle.addEventListener('click', function() {
                 detailsToggle.classList.toggle('active');
                 detailsContent.classList.toggle('active');
+            });
+
+            // Exclusive session selection logic
+            const session1 = document.getElementById('session1');
+            const session2 = document.getElementById('session2');
+            const session3 = document.getElementById('session3');
+            const session4 = document.getElementById('session4');
+            const sessionError = document.getElementById('sessionError');
+            const cyclingSessions = [session1, session2, session4];
+
+            // Function to show session error
+            function showSessionError(message) {
+                sessionError.textContent = message;
+                sessionError.style.display = 'block';
+                setTimeout(() => {
+                    sessionError.style.display = 'none';
+                }, 4000);
+            }
+
+            // When Session 3 (dance) is checked
+            session3.addEventListener('change', function() {
+                if (this.checked) {
+                    // Uncheck all cycling sessions
+                    let hadSelection = false;
+                    cyclingSessions.forEach(session => {
+                        if (session.checked) {
+                            hadSelection = true;
+                            session.checked = false;
+                        }
+                    });
+                    if (hadSelection) {
+                        showSessionError('Session 3 (Dance Workshop) cannot be combined with cycling sessions. Other sessions have been deselected.');
+                    }
+                }
+            });
+
+            // When any cycling session is checked
+            cyclingSessions.forEach(cyclingSession => {
+                cyclingSession.addEventListener('change', function() {
+                    if (this.checked && session3.checked) {
+                        // Uncheck Session 3
+                        session3.checked = false;
+                        showSessionError('Cycling sessions cannot be combined with Session 3 (Dance Workshop). Session 3 has been deselected.');
+                    }
+                });
             });
 
             // Form validation
@@ -2409,6 +2485,9 @@
                     "mediaConsent": document.getElementById('mediaConsent').checked ? 'Yes' : 'No'
                 };
 
+                // Check if Session 3 (Dance Workshop) is selected
+                const isSession3Selected = selectedSessions.some(session => session.includes('Session 3'));
+
                 try {
                     // Submit to Google Sheets
                     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxBCnq3023OZ-LCYXhQFRYFSfLmgXPKt3THAq1o-CrWc0t-NHvgHmMnOWC6ajnPmVo/exec';
@@ -2425,6 +2504,30 @@
                     // Wait a moment to ensure data is submitted
                     await new Promise(resolve => setTimeout(resolve, 1500));
 
+                    // If Session 3 is selected, send email confirmation
+                    if (isSession3Selected) {
+                        try {
+                            // Send email via Google Apps Script
+                            const emailData = {
+                                ...formData,
+                                sendEmail: true,
+                                emailType: 'session3'
+                            };
+
+                            await fetch(GOOGLE_SCRIPT_URL, {
+                                method: 'POST',
+                                mode: 'no-cors',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(emailData)
+                            });
+                        } catch (emailError) {
+                            console.error('Error sending email:', emailError);
+                            // Continue even if email fails
+                        }
+                    }
+
                     // Close pre-registration modal
                     preRegModal.classList.remove('active');
                     document.body.style.overflow = '';
@@ -2434,32 +2537,49 @@
                     submitBtn.style.display = 'block';
                     loadingSpinner.style.display = 'none';
 
-                    // Show loading overlay and redirect to ticket purchase page
-                    setTimeout(() => {
-                        ticketLoadingOverlay.classList.add('active');
-                        // Redirect after showing loading animation
+                    // Handle different flows based on session selection
+                    if (isSession3Selected) {
+                        // For Session 3: Show thank you modal (no ticket redirect)
                         setTimeout(() => {
-                            window.location.href = 'https://www.wien-ticket.at/en/ticket/138311/afrobeats-indoor-cycling-vienna-takeover-2025-sport-arena-wien';
-                        }, 1500);
-                    }, 300);
+                            thankYouModal.classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                        }, 300);
+                    } else {
+                        // For other sessions: Redirect to Wien Ticket
+                        setTimeout(() => {
+                            ticketLoadingOverlay.classList.add('active');
+                            // Redirect after showing loading animation
+                            setTimeout(() => {
+                                window.location.href = 'https://www.wien-ticket.at/en/ticket/138311/afrobeats-indoor-cycling-vienna-takeover-2025-sport-arena-wien';
+                            }, 1500);
+                        }, 300);
+                    }
 
                 } catch (error) {
                     console.error('Error submitting form:', error);
 
-                    // Even if there's an error, redirect to ticket purchase page
+                    // Even if there's an error, proceed with appropriate flow
                     preRegModal.classList.remove('active');
                     preRegForm.reset();
                     submitBtn.style.display = 'block';
                     loadingSpinner.style.display = 'none';
 
-                    // Show loading overlay and redirect to ticket purchase page
-                    setTimeout(() => {
-                        ticketLoadingOverlay.classList.add('active');
-                        // Redirect after showing loading animation
+                    if (isSession3Selected) {
+                        // For Session 3: Show thank you modal
                         setTimeout(() => {
-                            window.location.href = 'https://www.wien-ticket.at/en/ticket/138311/afrobeats-indoor-cycling-vienna-takeover-2025-sport-arena-wien';
-                        }, 1500);
-                    }, 300);
+                            thankYouModal.classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                        }, 300);
+                    } else {
+                        // For other sessions: Redirect to ticket purchase page
+                        setTimeout(() => {
+                            ticketLoadingOverlay.classList.add('active');
+                            // Redirect after showing loading animation
+                            setTimeout(() => {
+                                window.location.href = 'https://www.wien-ticket.at/en/ticket/138311/afrobeats-indoor-cycling-vienna-takeover-2025-sport-arena-wien';
+                            }, 1500);
+                        }, 300);
+                    }
                 }
             });
         });

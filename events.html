@@ -40,7 +40,7 @@
             
             <p>Transforming the Sport Arena Vienna into a high-energy, concert-style fitness arena, the event combines live DJ sets, professional lighting, synchronized visuals, and special effects to create a truly immersive atmosphere.</p>
             
-            <p>With 400 riders across four sessions and an expected total attendance of 800–1,000 guests throughout the day, Afrobeats Indoor Cycling: Vienna Takeover 2025 stands as Austria’s largest indoor group-fitness cycling experience — a one-of-a-kind celebration of music, movement, and culture.</p>
+            <p>With 300 riders across four sessions and an expected total attendance of 800–1,000 guests throughout the day, Afrobeats Indoor Cycling: Vienna Takeover 2025 stands as Austria's largest indoor group-fitness cycling experience — a one-of-a-kind celebration of music, movement, and culture.</p>
         </div>
     </section>
 
@@ -88,7 +88,7 @@
                         </svg>
                     </div>
                     <h3>Periods</h3>
-                    <p>4 Main Ride Periods<br>14:00-15:00 • 15:30-16:30 <br> 17:30-18:30 • 19:00-20:00 </p>
+                    <p>4 Main Periods<br>14:00-15:00 • 15:30-16:30<br>17:30-18:30 (Afrobeats Dance Workshop with Kafeela Ade) • 19:00-20:00</p>
                 </div>
                 <div class="info-card">
                     <div class="info-icon">
@@ -109,15 +109,16 @@
                 <h2>Ticket Prices</h2>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem; margin-bottom: 1.5rem;">
                     <p>Session 1: <span class="price">€55</span></p>
-                    <p>Session 3: <span class="price">€70</span></p>
+                    <p>Session 3: <span class="price">FREE*</span></p>
                     <p>Session 2: <span class="price">€60</span></p>
                     <p>Session 4: <span class="price">€70</span></p>
                 </div>
-                <p>Use the Early Bird Discount code at checkout to unlock reduced ticket prices. Early Bird tickets are limited, so be sure to secure your sport early!</p>
+                <p style="margin-bottom: 0.5rem;">*Session 3 (Afrobeats Dance Workshop with Kafeela Ade) is FREE - registration is compulsory to secure a spot. Suitable for ages 6 and above.</p>
+                <p>Have a discount code? Apply it at checkout for Sessions 1, 2, and 4.</p>
             </div>
             <div class="column">
                 <h2>Capacity</h2>
-                <p>400 riders across four sessions (100 bikes per session) and a total day-long attendance of 800-1,000 guests; Combining riders and their accompanying audience for a vibrant, high energy atmosphere</p>
+                <p>300 riders across four sessions (100 bikes per session for Sessions 1, 2, 4; dance workshop for Session 3) and a total day-long attendance of 800-1,000 guests; Combining riders and their accompanying audience for a vibrant, high energy atmosphere</p>
             </div>
             <div class="column">
                 <h2>Program Highlights</h2>
@@ -309,22 +310,24 @@
                     <label>Sessions (select one or more)</label>
                     <div class="session-checkboxes">
                         <div class="checkbox-item">
-                            <input type="checkbox" id="session1" name="sessions" value="14:00-15:00">
-                            <label for="session1">14:00-15:00</label>
+                            <input type="checkbox" id="session1" name="sessions" value="Session 1: 14:00-15:00" data-session-type="cycling">
+                            <label for="session1">Session 1: 14:00-15:00 (Cycling)</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" id="session2" name="sessions" value="15:30-16:30">
-                            <label for="session2">15:30-16:30</label>
+                            <input type="checkbox" id="session2" name="sessions" value="Session 2: 15:30-16:30" data-session-type="cycling">
+                            <label for="session2">Session 2: 15:30-16:30 (Cycling)</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" id="session3" name="sessions" value="17:30-18:30">
-                            <label for="session3">17:30-18:30</label>
+                            <input type="checkbox" id="session3" name="sessions" value="Session 3: 17:30-18:30 - Afrobeats Dance Workshop" data-session-type="dance">
+                            <label for="session3">Session 3: 17:30-18:30 - Afrobeats Dance Workshop (FREE*)</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" id="session4" name="sessions" value="19:00-20:00">
-                            <label for="session4">19:00-20:00</label>
+                            <input type="checkbox" id="session4" name="sessions" value="Session 4: 19:00-20:00" data-session-type="cycling">
+                            <label for="session4">Session 4: 19:00-20:00 (Cycling)</label>
                         </div>
                     </div>
+                    <p style="font-size: 0.9em; color: #888; margin-top: 0.5rem;">*Session 3 is FREE but registration is required. Suitable for ages 6+. Note: Session 3 cannot be combined with other sessions.</p>
+                    <div id="sessionError" style="display: none; color: #dc3545; font-size: 0.9em; margin-top: 0.5rem; padding: 0.5rem; background: rgba(220, 53, 69, 0.1); border-radius: 4px;"></div>
                 </div>
 
                 <!-- Guest(s) -->
