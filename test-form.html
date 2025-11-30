@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Form - Apps Script Connection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #D4AF37;
+            margin-top: 0;
+        }
+        button {
+            background: #D4AF37;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #c49d2f;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .loading {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+        .info {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            border-left: 4px solid #D4AF37;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-box">
+        <h1>🧪 Apps Script Test Form</h1>
+
+        <div class="info">
+            <strong>Purpose:</strong> This page tests if your Google Apps Script is working and receiving data.
+        </div>
+
+        <form id="testForm">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" value="Test User" required>
+
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" value="manuwatolu@gmail.com" required>
+
+            <label for="session">Select Session:</label>
+            <select id="session" required>
+                <option value="Session 1: 14:00-15:00">Session 1: 14:00-15:00</option>
+                <option value="Session 2: 15:30-16:30">Session 2: 15:30-16:30</option>
+                <option value="Session 3: 17:30-18:30 - Afrobeats Dance Workshop">Session 3: Dance Workshop (will trigger email)</option>
+                <option value="Session 4: 19:00-20:00">Session 4: 19:00-20:00</option>
+            </select>
+
+            <button type="submit">🚀 Test Submission</button>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbysUevL15dpTFXFni0t7Dlxo6EefTLlsHfSR6CuWZ6i9-dKiVDjSu3Y8gUcGMn_qumx/exec';
+
+        document.getElementById('testForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const resultDiv = document.getElementById('result');
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const session = document.getElementById('session').value;
+
+            // Check if Session 3 for email trigger
+            const isSession3 = session.includes('Session 3');
+
+            const formData = {
+                timestamp: new Date().toISOString(),
+                fullName: name,
+                email: email,
+                phone: "+43 123 456789",
+                location: "Vienna, Austria",
+                sessions: session,
+                groupSize: "0",
+                ageConfirm: "Yes",
+                physicalReadiness: "Yes",
+                liabilityWaiver: "Yes",
+                eventRecording: "Yes",
+                stayConnected: "Yes",
+                gdprConsent: "Yes",
+                mediaConsent: "Yes",
+                sendEmail: isSession3,
+                emailType: isSession3 ? "session3" : null
+            };
+
+            // Show loading
+            resultDiv.className = 'result loading';
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '⏳ Sending data to Apps Script...';
+
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // Wait a moment
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                // Show success
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `
+                    <strong>✅ Submission Sent!</strong><br><br>
+                    <strong>What to check:</strong><br>
+                    1. Check your Google Sheet - new row should appear<br>
+                    2. Check Apps Script → Executions tab for logs<br>
+                    ${isSession3 ? '3. Check email at ' + email + ' (Session 3 selected)<br>4. Check Resend dashboard' : '3. No email (Session 3 not selected)'}
+                `;
+
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    <strong>❌ Error!</strong><br><br>
+                    ${error.message}<br><br>
+                    Check your browser console for details.
+                `;
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
