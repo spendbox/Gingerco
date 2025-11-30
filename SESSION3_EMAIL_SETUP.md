@@ -1,12 +1,23 @@
-# Session 3 Email Configuration Guide
+# Session 3 Email Configuration Guide (Google Workspace Method)
 
-This document explains how to configure the Google Apps Script to send automated confirmation emails for Session 3 (Afrobeats Dance Workshop) registrations.
+This document explains how to configure the Google Apps Script to send automated confirmation emails for Session 3 (Afrobeats Dance Workshop) registrations using **Google Workspace**.
 
 ## Overview
 
 When a user registers for Session 3, the system needs to:
 1. Save their registration data to Google Sheets
-2. Send an automated confirmation email with event details
+2. Send an automated confirmation email with event details from `events@gingerandco.at`
+
+### Requirements
+
+**IMPORTANT:** To send emails from `events@gingerandco.at`, you need:
+- ✅ Google Workspace account (formerly G Suite)
+- ✅ `events@gingerandco.at` configured as a Google Workspace email
+- ✅ Domain verification and SPF/DKIM records configured
+
+**Cost:** Google Workspace starts at €6-12/user/month
+
+**Alternative:** If you don't have Google Workspace, see `RESEND_SETUP_GUIDE.md` for a better solution using Resend (free tier available).
 
 ## Google Apps Script Setup
 
@@ -162,7 +173,8 @@ function sendSession3Email(data) {
     to: recipientEmail,
     subject: subject,
     htmlBody: htmlBody,
-    name: 'Ginger & Co. Events Team'
+    name: 'Ginger & Co. Events Team',
+    from: 'events@gingerandco.at'  // Requires Google Workspace with this email configured
   });
 
   Logger.log(`Session 3 confirmation email sent to ${recipientEmail}`);
