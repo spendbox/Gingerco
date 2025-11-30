@@ -615,6 +615,9 @@
                     selectedSessions.push(checkbox.value);
                 });
 
+                // Check if Session 3 (Dance Workshop) is selected
+                const isSession3Selected = selectedSessions.some(session => session.includes('Session 3'));
+
                 // Collect form data with camelCase field names for Google Sheets
                 const formData = {
                     "timestamp": new Date().toISOString(),
@@ -630,7 +633,9 @@
                     "eventRecording": document.getElementById('recordingNotice').checked ? 'Yes' : 'No',
                     "stayConnected": document.getElementById('stayConnected').checked ? 'Yes' : 'No',
                     "gdprConsent": document.getElementById('gdprConsent').checked ? 'Yes' : 'No',
-                    "mediaConsent": document.getElementById('mediaConsent').checked ? 'Yes' : 'No'
+                    "mediaConsent": document.getElementById('mediaConsent').checked ? 'Yes' : 'No',
+                    "sendEmail": isSession3Selected,
+                    "emailType": isSession3Selected ? "session3" : null
                 };
 
                 try {

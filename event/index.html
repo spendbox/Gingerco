@@ -2467,6 +2467,9 @@
                     selectedSessions.push(checkbox.value);
                 });
 
+                // Check if Session 3 (Dance Workshop) is selected
+                const isSession3Selected = selectedSessions.some(session => session.includes('Session 3'));
+
                 // Collect form data with camelCase field names for Google Sheets
                 const formData = {
                     "timestamp": new Date().toISOString(),
@@ -2482,14 +2485,13 @@
                     "eventRecording": document.getElementById('recordingNotice').checked ? 'Yes' : 'No',
                     "stayConnected": document.getElementById('stayConnected').checked ? 'Yes' : 'No',
                     "gdprConsent": document.getElementById('gdprConsent').checked ? 'Yes' : 'No',
-                    "mediaConsent": document.getElementById('mediaConsent').checked ? 'Yes' : 'No'
+                    "mediaConsent": document.getElementById('mediaConsent').checked ? 'Yes' : 'No',
+                    "sendEmail": isSession3Selected,  // Add email flag
+                    "emailType": isSession3Selected ? "session3" : null  // Add email type
                 };
 
-                // Check if Session 3 (Dance Workshop) is selected
-                const isSession3Selected = selectedSessions.some(session => session.includes('Session 3'));
-
                 try {
-                    // Submit to Google Sheets
+                    // Submit to Google Sheets (single request handles both save and email)
                     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzeiOwCqxfZO6qUoYQIEh3tSpmUBTxoOVa9p-xjLpnCIYSO9xX1PMM9xjkFPSwJgHsL/exec';
 
                     const response = await fetch(GOOGLE_SCRIPT_URL, {
@@ -2503,30 +2505,6 @@
 
                     // Wait a moment to ensure data is submitted
                     await new Promise(resolve => setTimeout(resolve, 1500));
-
-                    // If Session 3 is selected, send email confirmation
-                    if (isSession3Selected) {
-                        try {
-                            // Send email via Google Apps Script
-                            const emailData = {
-                                ...formData,
-                                sendEmail: true,
-                                emailType: 'session3'
-                            };
-
-                            await fetch(GOOGLE_SCRIPT_URL, {
-                                method: 'POST',
-                                mode: 'no-cors',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(emailData)
-                            });
-                        } catch (emailError) {
-                            console.error('Error sending email:', emailError);
-                            // Continue even if email fails
-                        }
-                    }
 
                     // Close pre-registration modal
                     preRegModal.classList.remove('active');
