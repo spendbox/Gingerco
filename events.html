@@ -451,7 +451,7 @@
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="submit-btn" id="submitBtn">Proceed to Ticket Purchase</button>
+                <button type="submit" class="submit-btn" id="submitBtn">Register/Proceed to Ticket Registration</button>
             </form>
         </div>
     </div>
@@ -570,6 +570,19 @@
 
                 if (!phone.value.trim()) {
                     phone.closest('.form-group').classList.add('error');
+                    isValid = false;
+                }
+
+                // Validate at least one session is selected
+                const selectedSessions = document.querySelectorAll('input[name="sessions"]:checked');
+                if (selectedSessions.length === 0) {
+                    const sessionError = document.getElementById('sessionError');
+                    sessionError.textContent = 'Please select at least one session';
+                    sessionError.style.display = 'block';
+                    sessionError.style.color = '#d32f2f';
+                    setTimeout(() => {
+                        sessionError.style.display = 'none';
+                    }, 3000);
                     isValid = false;
                 }
 
