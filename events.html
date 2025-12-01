@@ -326,7 +326,7 @@
                             <label for="session4">Session 4: 19:00-20:00 (Cycling)</label>
                         </div>
                     </div>
-                    <p style="font-size: 0.9em; color: #888; margin-top: 0.5rem;">*Session 3 is FREE but registration is required. Suitable for ages 6+. Note: Session 3 cannot be combined with other sessions.</p>
+                    <p style="font-size: 0.9em; color: #888; margin-top: 0.5rem;">*Session 3 is FREE but registration is required. Suitable for ages 6+.</p>
                     <div id="sessionError" style="display: none; color: #dc3545; font-size: 0.9em; margin-top: 0.5rem; padding: 0.5rem; background: rgba(220, 53, 69, 0.1); border-radius: 4px;"></div>
                 </div>
 
@@ -617,6 +617,8 @@
 
                 // Check if Session 3 (Dance Workshop) is selected
                 const isSession3Selected = selectedSessions.some(session => session.includes('Session 3'));
+                // Check if ONLY Session 3 is selected (no other sessions)
+                const isOnlySession3 = selectedSessions.length === 1 && isSession3Selected;
 
                 // Collect form data with camelCase field names for Google Sheets
                 const formData = {
