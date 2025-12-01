@@ -2095,7 +2095,7 @@
                             <label for="session4">Session 4: 19:00-20:00 (Cycling)</label>
                         </div>
                     </div>
-                    <p style="font-size: 0.9em; color: #888; margin-top: 0.5rem;">*Session 3 is FREE but registration is required. Suitable for ages 6+. Note: Session 3 cannot be combined with other sessions.</p>
+                    <p style="font-size: 0.9em; color: #888; margin-top: 0.5rem;">*Session 3 is FREE but registration is required. Suitable for ages 6+.</p>
                     <div id="sessionError" style="display: none; color: #dc3545; font-size: 0.9em; margin-top: 0.5rem; padding: 0.5rem; background: rgba(220, 53, 69, 0.1); border-radius: 4px;"></div>
                 </div>
 
@@ -2363,51 +2363,6 @@
                 detailsContent.classList.toggle('active');
             });
 
-            // Exclusive session selection logic
-            const session1 = document.getElementById('session1');
-            const session2 = document.getElementById('session2');
-            const session3 = document.getElementById('session3');
-            const session4 = document.getElementById('session4');
-            const sessionError = document.getElementById('sessionError');
-            const cyclingSessions = [session1, session2, session4];
-
-            // Function to show session error
-            function showSessionError(message) {
-                sessionError.textContent = message;
-                sessionError.style.display = 'block';
-                setTimeout(() => {
-                    sessionError.style.display = 'none';
-                }, 4000);
-            }
-
-            // When Session 3 (dance) is checked
-            session3.addEventListener('change', function() {
-                if (this.checked) {
-                    // Uncheck all cycling sessions
-                    let hadSelection = false;
-                    cyclingSessions.forEach(session => {
-                        if (session.checked) {
-                            hadSelection = true;
-                            session.checked = false;
-                        }
-                    });
-                    if (hadSelection) {
-                        showSessionError('Session 3 (Dance Workshop) cannot be combined with cycling sessions. Other sessions have been deselected.');
-                    }
-                }
-            });
-
-            // When any cycling session is checked
-            cyclingSessions.forEach(cyclingSession => {
-                cyclingSession.addEventListener('change', function() {
-                    if (this.checked && session3.checked) {
-                        // Uncheck Session 3
-                        session3.checked = false;
-                        showSessionError('Cycling sessions cannot be combined with Session 3 (Dance Workshop). Session 3 has been deselected.');
-                    }
-                });
-            });
-
             // Form validation
             function validateForm() {
                 let isValid = true;
@@ -2482,6 +2437,8 @@
 
                 // Check if Session 3 (Dance Workshop) is selected
                 const isSession3Selected = selectedSessions.some(session => session.includes('Session 3'));
+                // Check if ONLY Session 3 is selected (no other sessions)
+                const isOnlySession3 = selectedSessions.length === 1 && isSession3Selected;
 
                 // Collect form data with camelCase field names for Google Sheets
                 const formData = {
@@ -2529,14 +2486,14 @@
                     loadingSpinner.style.display = 'none';
 
                     // Handle different flows based on session selection
-                    if (isSession3Selected) {
-                        // For Session 3: Show thank you modal (no ticket redirect)
+                    if (isOnlySession3) {
+                        // For ONLY Session 3: Show thank you modal (no ticket redirect)
                         setTimeout(() => {
                             thankYouModal.classList.add('active');
                             document.body.style.overflow = 'hidden';
                         }, 300);
                     } else {
-                        // For other sessions: Redirect to Wien Ticket
+                        // For Session 3 + others OR only cycling sessions: Redirect to Wien Ticket
                         setTimeout(() => {
                             ticketLoadingOverlay.classList.add('active');
                             // Redirect after showing loading animation
@@ -2555,14 +2512,14 @@
                     submitBtn.style.display = 'block';
                     loadingSpinner.style.display = 'none';
 
-                    if (isSession3Selected) {
-                        // For Session 3: Show thank you modal
+                    if (isOnlySession3) {
+                        // For ONLY Session 3: Show thank you modal
                         setTimeout(() => {
                             thankYouModal.classList.add('active');
                             document.body.style.overflow = 'hidden';
                         }, 300);
                     } else {
-                        // For other sessions: Redirect to ticket purchase page
+                        // For Session 3 + others OR only cycling sessions: Redirect to ticket purchase page
                         setTimeout(() => {
                             ticketLoadingOverlay.classList.add('active');
                             // Redirect after showing loading animation
