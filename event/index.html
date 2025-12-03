@@ -312,6 +312,35 @@
             color: #22c55e;
         }
 
+        /* Countdown Timer Styles */
+        .promo-countdown {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.7rem;
+            color: var(--gold);
+            font-weight: 600;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .promo-countdown-label {
+            color: #a1a1aa;
+            font-weight: normal;
+            font-size: 0.65rem;
+        }
+
+        .promo-countdown-time {
+            font-family: 'Courier New', monospace;
+            color: white;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            font-size: 0.7rem;
+        }
+
         /* Add top padding to body content */
         body > section:first-of-type,
         body > .hero {
@@ -367,6 +396,20 @@
             .promo-right {
                 width: auto;
                 justify-content: flex-end;
+            }
+
+            .promo-countdown {
+                justify-content: flex-start;
+                font-size: 0.75rem;
+                margin-top: 0.25rem;
+            }
+
+            .promo-countdown-label {
+                font-size: 0.7rem;
+            }
+
+            .promo-countdown-time {
+                font-size: 0.75rem;
             }
         }
 
@@ -1725,7 +1768,7 @@
         <a href="#tickets" class="btn-primary">Get Tickets</a>
     </header>
 
-    <!-- Black Friday Discount Banner -->
+    <!-- Special Offer Banner -->
     <div class="promo-banner" id="promoBanner" onclick="document.getElementById('preRegistrationModal').classList.add('active'); document.body.style.overflow = 'hidden';">
         <div class="promo-banner-container">
             <!-- Left: Promo Info -->
@@ -1737,8 +1780,14 @@
 
                 <div class="promo-text-wrapper">
                     <p class="promo-main-text">
-                        <span class="promo-discount">Apply 'Ginger30' to enjoy a 30% Black Friday discount on all sessions</span>
+                        <span class="promo-title">50% OFF All Tickets</span>
+                        <span class="promo-separator-text">•</span>
+                        <span class="promo-discount">Use Code: Ginger50 • Valid for all Cycling Sessions</span>
                     </p>
+                    <div class="promo-countdown">
+                        <span class="promo-countdown-label">Offer ends in:</span>
+                        <span class="promo-countdown-time" id="countdownTimer">Loading...</span>
+                    </div>
                 </div>
             </div>
 
@@ -1747,7 +1796,7 @@
                 <!-- Copy Code Button -->
                 <button class="promo-code-button" onclick="event.stopPropagation(); copyPromoCode();" title="Click to copy code">
                     <span class="promo-code-label">Code:</span>
-                    <code class="promo-code-value">Ginger30</code>
+                    <code class="promo-code-value">Ginger50</code>
                     <svg class="promo-code-icon" id="copyIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                 </button>
             </div>
@@ -1756,7 +1805,7 @@
 
     <script>
         function copyPromoCode() {
-            const code = 'Ginger30';
+            const code = 'Ginger50';
             navigator.clipboard.writeText(code).then(() => {
                 const icon = document.getElementById('copyIcon');
                 icon.innerHTML = '<polyline points="20 6 9 17 4 12"></polyline>';
@@ -1767,6 +1816,30 @@
                 }, 2000);
             });
         }
+
+        // Countdown Timer to December 6th, 2025
+        function updateCountdown() {
+            const eventDate = new Date('2025-12-06T00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.getElementById('countdownTimer').textContent = 'Event Started!';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('countdownTimer').textContent =
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
     </script>
 
     <section class="hero">
