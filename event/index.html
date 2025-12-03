@@ -218,15 +218,17 @@
 
         .promo-main-text {
             font-weight: bold;
-            font-size: 0.875rem;
+            font-size: 1rem;
             line-height: 1.25;
             letter-spacing: 0.025em;
         }
 
         .promo-title {
-            color: var(--gold);
+            color: #fbbf24;
             text-transform: uppercase;
-            margin-right: 0.5rem;
+            font-weight: 800;
+            font-size: 1.125rem;
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
         }
 
         .promo-separator-text {
@@ -318,27 +320,36 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            font-size: 0.7rem;
-            color: var(--gold);
-            font-weight: 600;
-            margin-top: 0.5rem;
+            margin-top: 0.75rem;
             flex-wrap: wrap;
         }
 
         .promo-countdown-label {
-            color: #a1a1aa;
-            font-weight: normal;
-            font-size: 0.65rem;
+            color: #d1d5db;
+            font-weight: 500;
+            font-size: 0.75rem;
+            letter-spacing: 0.025em;
         }
 
         .promo-countdown-time {
             font-family: 'Courier New', monospace;
-            color: white;
-            background: rgba(212, 175, 55, 0.1);
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            font-size: 0.7rem;
+            color: #fff;
+            background: rgba(212, 175, 55, 0.2);
+            padding: 0.5rem 0.875rem;
+            border-radius: 0.375rem;
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            font-size: 1.125rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Use Code Text */
+        .promo-use-code-text {
+            color: #d1d5db;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.025em;
         }
 
         /* Add top padding to body content */
@@ -400,16 +411,24 @@
 
             .promo-countdown {
                 justify-content: flex-start;
-                font-size: 0.75rem;
-                margin-top: 0.25rem;
+                margin-top: 0.5rem;
             }
 
             .promo-countdown-label {
-                font-size: 0.7rem;
+                font-size: 0.875rem;
             }
 
             .promo-countdown-time {
-                font-size: 0.75rem;
+                font-size: 1.25rem;
+                padding: 0.625rem 1rem;
+            }
+
+            .promo-title {
+                font-size: 1.25rem;
+            }
+
+            .promo-use-code-text {
+                font-size: 0.9375rem;
             }
         }
 
@@ -1781,8 +1800,6 @@
                 <div class="promo-text-wrapper">
                     <p class="promo-main-text">
                         <span class="promo-title">50% OFF All Tickets</span>
-                        <span class="promo-separator-text">•</span>
-                        <span class="promo-discount">Use Code: Ginger50 • Valid for all Cycling Sessions</span>
                     </p>
                     <div class="promo-countdown">
                         <span class="promo-countdown-label">Event starts in:</span>
@@ -1793,9 +1810,9 @@
 
             <!-- Right: Actions -->
             <div class="promo-right">
+                <span class="promo-use-code-text">Use Code:</span>
                 <!-- Copy Code Button -->
                 <button class="promo-code-button" onclick="event.stopPropagation(); copyPromoCode();" title="Click to copy code">
-                    <span class="promo-code-label">Code:</span>
                     <code class="promo-code-value">Ginger50</code>
                     <svg class="promo-code-icon" id="copyIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                 </button>
