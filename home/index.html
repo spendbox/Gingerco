@@ -1864,7 +1864,11 @@
             const distance = eventDate - now;
 
             if (distance < 0) {
-                document.getElementById('countdownTimer').textContent = 'Event Started!';
+                // Hide the banner when countdown reaches 0
+                const banner = document.getElementById('promoBanner');
+                if (banner) {
+                    banner.style.display = 'none';
+                }
                 return;
             }
 
